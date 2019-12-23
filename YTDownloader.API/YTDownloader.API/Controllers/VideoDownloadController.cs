@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Hosting;
 using YTDownloader.API.Infrastructure;
 using System.IO;
 
+
 namespace YTDownloader.API.Controllers
 {
     //http://localhost:63219/
@@ -34,12 +35,13 @@ namespace YTDownloader.API.Controllers
 
         [HttpGet]
         [Route("[action]")]
-        public async Task<IActionResult> GetVideoQualities(string videoUrl)
+        public async Task<IActionResult> GetVideoMetaData(string videoUrl)
         {
             string id = YoutubeClient.ParseVideoId(videoUrl);
+            var video = await client.GetVideoAsync(id);
             MediaStreamInfoSet streamInfoSet = await client.GetVideoMediaStreamInfosAsync(id);
             IEnumerable<string> qualities = streamInfoSet.GetAllVideoQualityLabels();
-            return Ok(new VideoDetailsDTO {id=id, qualities=qualities });
+            return Ok(new VideoDetails{id=id,ChannelName=video.Author,Title=video.Title, qualities=qualities, thumbnails=video.Thumbnails });
         }
 
 
@@ -71,7 +73,7 @@ namespace YTDownloader.API.Controllers
             if (videoStream == null)
                     return BadRequest();
 
-                CleanDirectory.DeleteFile(env.WebRootPath + "\\DownloadedVideos", id + ".mp4");
+                CleanDirectory.DeleteFile(Path.Combine(env.WebRootPath,"//DownloadedVideos"), id + ".mp4");
                 return File(videoStream, "video/mp4", video.Title);
             
         }

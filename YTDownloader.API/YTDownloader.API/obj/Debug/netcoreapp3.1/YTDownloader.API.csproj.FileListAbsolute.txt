@@ -7,7 +7,6 @@ C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\bin\D
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\bin\Debug\netcoreapp3.1\YTDownloader.API.runtimeconfig.dev.json
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\bin\Debug\netcoreapp3.1\YTDownloader.API.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\bin\Debug\netcoreapp3.1\YTDownloader.API.pdb
-C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.csprojAssemblyReference.cache
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\obj\Debug\netcoreapp3.1\staticwebassets\YTDownloader.API.StaticWebAssets.Manifest.cache
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\obj\Debug\netcoreapp3.1\staticwebassets\YTDownloader.API.StaticWebAssets.xml
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.AssemblyInfoInputs.cache
