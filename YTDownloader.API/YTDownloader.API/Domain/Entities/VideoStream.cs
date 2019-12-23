@@ -4,7 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace YTDownloader.API.Infrastructure
+namespace YTDownloader.API.Domain.Entities
 {
     public class VideoStream
     {

@@ -1,6 +1,6 @@
 ﻿using System.IO;
 
-namespace YTDownloader.API.Infrastructure
+namespace YTDownloader.API.Domain.Entities
 {
     public static class CleanDirectory
     {

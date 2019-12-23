@@ -22,3 +22,4 @@ C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\obj\D
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\bin\Debug\netcoreapp3.1\CliWrap.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\bin\Debug\netcoreapp3.1\YoutubeExplode.Converter.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.csprojAssemblyReference.cache

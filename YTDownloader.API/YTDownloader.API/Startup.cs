@@ -1,18 +1,13 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using YoutubeExplode;
 using YoutubeExplode.Converter;
-using YTDownloader.API.Infrastructure;
+using YTDownloader.API.Domain.Entities;
+using YTDownloader.API.Domain.Abstract;
+using System.IO;
 
 namespace YTDownloader.API
 {
@@ -33,6 +28,7 @@ namespace YTDownloader.API
         {
             services.AddControllers();
             services.AddScoped<IYoutubeClient, YoutubeClient>();
+            services.AddScoped<IYoutubeClientHelper, YoutubeClientHelper>();
 
             //Clear wwwroot/DownloadedVideos dir
             string videosPath = env.WebRootPath + "\\DownloadedVideos";
