@@ -16,7 +16,7 @@ constructor(private http: HttpClient) {}
   let params = new HttpParams();
   params = params.append('quality', quality).append('id', videoID);
 
-  return this.http.post(this.baseURL + '/VideoDownload/GetVideo?quality=' + quality + '&id=' + videoID, undefined , {observe: 'response', responseType: 'blob'} );
+  return this.http.post(this.baseURL + '/VideoDownload/GetVideo', undefined , {observe: 'response', responseType: 'blob', params} );
   }
 }
 

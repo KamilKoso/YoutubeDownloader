@@ -10,7 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Entities\" />
     <Folder Include="wwwroot\DownloadedVideos\" />
   </ItemGroup>
 

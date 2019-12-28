@@ -8,6 +8,7 @@ using YTDownloader.API.Models;
 using YoutubeExplode.Converter;
 using YTDownloader.API.Domain.Abstract;
 using System.IO;
+using System;
 
 namespace YTDownloader.API.Domain.Entities
 {
@@ -36,7 +37,7 @@ namespace YTDownloader.API.Domain.Entities
         {
             var video = await client.GetVideoAsync(videoId);
             MediaStreamInfoSet streamInfoSet = await client.GetVideoMediaStreamInfosAsync(videoId);
-            IEnumerable<string> qualities = streamInfoSet.GetAllVideoQualityLabels();
+            IEnumerable<string> qualities = SortQualities(streamInfoSet.GetAllVideoQualityLabels());
 
             return new VideoDetails() { id = videoId, ChannelName = video.Author, Title = video.Title, qualities = qualities, thumbnails = video.Thumbnails };
         }
@@ -49,6 +50,17 @@ namespace YTDownloader.API.Domain.Entities
             var videoStreamInfo = streamInfoSet.Video.FirstOrDefault(c => c.VideoQualityLabel == quality);
             var mediaStreamInfos = new MediaStreamInfo[] { audioStreamInfo, videoStreamInfo };
             await converter.DownloadAndProcessMediaStreamsAsync(mediaStreamInfos, videoPath, "mp4");
+        }
+
+         IEnumerable<string> SortQualities(IEnumerable<string> qualities)
+        {
+            List<string> sortedStrings = qualities.ToList();
+            return sortedStrings
+                .Select(s => new { str = s, split = s.Split('p') })
+                .OrderBy(x => int.Parse(x.split[0]))
+                .ThenBy(x => x.split[1])
+                .Select(x => x.str)
+                .ToList();
         }
     }
 }

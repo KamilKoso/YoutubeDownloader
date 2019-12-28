@@ -1,13 +1,17 @@
 <div class="cointainer">
  <div class="row">
    <div class="col-md-12 mt-5">
+
+    <div class="text-center" *ngIf="videoUrlvalidate.errors?.pattern && videoUrlvalidate.touched"><i class="fa fa-exclamation"></i> Invalid URL</div>
+    <div class="text-center" *ngIf="videoUrlvalidate.errors?.required && videoUrlvalidate.touched"><i class="fa fa-exclamation"></i>Provide Youtube URL</div>
+    <div class="text-center" *ngIf=(getMetadataFailed)><i class="fa fa-exclamation"></i>Failed to parse video</div>
+
     <form #urlForm="ngForm" class="form-inline justify-content-center" (ngSubmit)="getMetadata()" >
-        <input class="form-control mr-sm-2 w-50" type="text" name="videoUrl" placeholder="Provide your URL" [(ngModel)]="videoUrl" required>
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Parse Video</button>
+      <input class="form-control mr-sm-2 w-50" type="text" name="videoUrl" placeholder="Provide your URL" [(ngModel)]="videoUrl"  #videoUrlvalidate='ngModel' pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" required >
+        <button class="btn my-2 my-sm-0" type="submit" [ngClass]="(videoUrlvalidate.errors?.pattern && videoUrlvalidate.touched) ? 'btn-danger': 'btn-outline-success'" [disabled]="videoUrlvalidate.errors?.pattern && videoUrlvalidate.touched" >Parse Video</button>
     </form>
   </div>
  </div>
-
 
 <div *ngIf="videoMetadata">
  <div class="row">

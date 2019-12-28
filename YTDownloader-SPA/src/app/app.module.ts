@@ -16,7 +16,7 @@ import { VideoMetadataComponent } from './videoMetadata/videoMetadata.component'
    imports: [
       BrowserModule,
       HttpClientModule,
-      FormsModule
+      FormsModule,
    ],
    providers: [],
    bootstrap: [

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 
 import {FileDownloadService} from '../services/FileDownload/FileDownload.service';
 import * as fileSaver from 'file-saver';
@@ -15,14 +16,12 @@ export class VideoMetadataComponent implements OnInit {
   videoMetadata: any;
   videoUrl: string;
   selectedQuality: string;
+  getMetadataFailed:bool=false;
 
   constructor(private http: HttpClient, private fileService: FileDownloadService) { }
 
   ngOnInit() { }
 
-  onQualitySubmit() {
-    console.log(this.selectedQuality);
-  }
 
   downloadFile() {
     this.fileService.downloadFile(this.selectedQuality, this.videoMetadata.id).subscribe(response => {
@@ -36,9 +35,11 @@ export class VideoMetadataComponent implements OnInit {
     params = params.append('videoUrl', this.videoUrl);
     this.http.get(this.baseURL + '/VideoDownload/GetVideoMetaData', {params})
     .subscribe(response => {
+        this.getMetadataFailed=false;
         this.videoMetadata = response;
     },
     error => {
+      this.getMetadataFailed=true;
       console.log(error);
     });
   }
