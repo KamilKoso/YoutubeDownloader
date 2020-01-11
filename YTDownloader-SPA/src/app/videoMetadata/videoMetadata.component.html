@@ -14,13 +14,13 @@
  </div>
 
 <div *ngIf="videoMetadata">
- <div class="row">
+ <div class="row" @fade> 
   <div class="col-md-12 justify-content-center d-flex align-items-center">
     <img src="{{videoMetadata.thumbnails.mediumResUrl}}" class="img-fluid" style="height: 70%;">
   </div>
  </div>
  
- <div class="row">
+ <div class="row" @fade>
   <div class="col-md-12 justify-content-center d-flex align-items-center">
     <p class="lead font-weight-bold">{{videoMetadata.title}}</p>
   </div>
@@ -33,7 +33,7 @@
      <label class="btn form-inline" [ngClass]="selectedQuality==item ? 'btn-success' : 'btn-secondary' "><input type="radio" [(ngModel)]="selectedQuality" name="quality" value="{{item}}" required>{{item}}</label>
      </div>
      <div class="w-100 d-flex justify-content-center">
-     <button *ngIf="selectedQuality" class="btn btn-outline-info my-2 my-ms-0" type="submit">Download video</button>
+     <button *ngIf="selectedQuality" @fade class="btn btn-outline-info my-2 my-ms-0" type="submit">Download video</button>
      </div>
     </form>
    </div>   
@@ -45,10 +45,10 @@
    <div class="col-md-12 d-flex justify-content-center">
      <div *ngIf="status">
      <div [ngSwitch]="status">
-       <div *ngSwitchCase="'DownloadingToTheServer'">Downloading to the server</div>
-       <div *ngSwitchCase="'DownloadingFromServer'">Your video is prepared to download</div>
-       <div *ngSwitchCase="'DownloadingComplete'">Downloading completed !</div>
-       <div *ngSwitchCase="'DownloadingError'">Downloading error</div>
+       <div @fade *ngSwitchCase="'DownloadingToTheServer'">Downloading to the server</div>
+       <div @fade *ngSwitchCase="'DownloadingFromServer'">Your video is prepared to download</div>
+       <div @fade *ngSwitchCase="'DownloadingComplete'">Downloading completed !</div>
+       <div @fade *ngSwitchCase="'DownloadingError'">Downloading error</div>
      </div>
     </div>
    </div>

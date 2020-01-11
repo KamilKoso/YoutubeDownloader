@@ -25,6 +25,7 @@
     "file-saver": "^2.0.2",
     "font-awesome": "^4.7.0",
     "rxjs": "~6.4.0",
+    "tree-kill": "^1.2.2",
     "tslib": "^1.10.0",
     "web-animations-js": "^2.3.2",
     "zone.js": "~0.9.1"

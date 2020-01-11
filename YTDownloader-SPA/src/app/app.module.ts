@@ -5,6 +5,7 @@ import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { VideoMetadataComponent } from './videoMetadata/videoMetadata.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -17,6 +18,7 @@ import { VideoMetadataComponent } from './videoMetadata/videoMetadata.component'
       BrowserModule,
       HttpClientModule,
       FormsModule,
+      BrowserAnimationsModule,
    ],
    providers: [],
    bootstrap: [

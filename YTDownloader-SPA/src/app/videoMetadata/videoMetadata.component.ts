@@ -2,15 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import {VideoDownloadStatus} from '../helpers/VideoDownloadStatusEnum';
 
+
 import {FileDownloadService} from '../services/FileDownload/FileDownload.service';
 import * as fileSaver from 'file-saver';
+import {fade} from '../services/Animations/fade';
+
 
 
 
 @Component({
   selector: 'app-video-metadata',
   templateUrl: './VideoMetadata.component.html',
-  styleUrls: ['./VideoMetadata.component.css']
+  styleUrls: ['./VideoMetadata.component.css'],
+  animations: [
+    fade
+  ]
 })
 export class VideoMetadataComponent implements OnInit {
 
