@@ -30,22 +30,22 @@ export class VideoMetadataComponent implements OnInit {
 
 
   downloadFile() {
-  //   this.status = VideoDownloadStatus.DownloadingToTheServer;
+    this.status = VideoDownloadStatus.DownloadingToTheServer;
     this.fileService.downloadFile(this.selectedQuality, this.videoMetadata.id).subscribe(response => {
-     // this.status = VideoDownloadStatus.DownloadingFromServer;
+      this.status = VideoDownloadStatus.DownloadingFromServer;
       const blob: any = new Blob([response.body], {type: 'application/x-www-form-urlencoded'});
       fileSaver.saveAs(blob, this.videoMetadata.title + '.mp4');
     },
     error => {
-     // this.status = VideoDownloadStatus.DownloadingError;
+      this.status = VideoDownloadStatus.DownloadingError;
     },
     () => {
-    //  this.status = VideoDownloadStatus.DownloadingComplete;
+      this.status = VideoDownloadStatus.DownloadingComplete;
     });
   }
 
   getMetadata() {
-   // this.status = VideoDownloadStatus.NotDownloading;
+    this.status = VideoDownloadStatus.NotDownloading;
     this.getMetadataFailed = false;
     let params = new HttpParams();
     params = params.append('videoUrl', this.videoUrl);

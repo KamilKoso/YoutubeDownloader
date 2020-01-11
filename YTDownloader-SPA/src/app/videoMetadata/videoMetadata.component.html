@@ -17,9 +17,14 @@
  <div class="row">
   <div class="col-md-12 justify-content-center d-flex align-items-center">
     <img src="{{videoMetadata.thumbnails.mediumResUrl}}" class="img-fluid" style="height: 70%;">
-    <p class="lead font-weight-bold">{{videoMetadata.title}}</p>
   </div>
  </div>
+ 
+ <div class="row">
+  <div class="col-md-12 justify-content-center d-flex align-items-center">
+    <p class="lead font-weight-bold">{{videoMetadata.title}}</p>
+  </div>
+</div>
 
  <div class="row">
   <div class="col-md-12">
@@ -35,14 +40,15 @@
   </div>
  </div>
 
+ 
  <div class="row">
-   <div class="col-md-12">
-     <div *ngIf="status!=undefined">
+   <div class="col-md-12 d-flex justify-content-center">
+     <div *ngIf="status">
      <div [ngSwitch]="status">
-       <div *ngSwitchCase="VideoDownloadStatus.DownloadingToTheServer">Downloading to the server</div>
-       <div *ngSwitchCase="VideoDownloadStatus.DownloadingFromServer">Your video is prepared to download</div>
-       <div *ngSwitchCase="VideoDownloadStatus.DownloadingComplete">Downloading completed !</div>
-       <div *ngSwitchCase="VideoDownloadStatus.DownloadingError">Downloading error</div>
+       <div *ngSwitchCase="'DownloadingToTheServer'">Downloading to the server</div>
+       <div *ngSwitchCase="'DownloadingFromServer'">Your video is prepared to download</div>
+       <div *ngSwitchCase="'DownloadingComplete'">Downloading completed !</div>
+       <div *ngSwitchCase="'DownloadingError'">Downloading error</div>
      </div>
     </div>
    </div>

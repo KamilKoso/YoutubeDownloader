@@ -54,13 +54,12 @@ namespace YTDownloader.API.Domain.Entities
 
          IEnumerable<string> SortQualities(IEnumerable<string> qualities)
         {
-            List<string> sortedStrings = qualities.ToList();
-            return sortedStrings
-                .Select(s => new { str = s, split = s.Split('p') })
-                .OrderBy(x => int.Parse(x.split[0]))
-                .ThenBy(x => x.split[1])
-                .Select(x => x.str)
-                .ToList();
+            return qualities.ToList()
+                    .Select(s => new { str = s, split = s.Split('p') })
+                    .OrderBy(x => int.Parse(x.split[0]))
+                    .ThenBy(x => x.split[1])
+                    .Select(x => x.str)
+                    .ToList();
         }
     }
 }

@@ -1,7 +1,7 @@
 export enum VideoDownloadStatus {
-   NotDownloading,
-   DownloadingToTheServer,
-   DownloadingFromServer,
-   DownloadingComplete,
-   DownloadingError
+   NotDownloading= 'NotDownloading',
+   DownloadingToTheServer= 'DownloadingToTheServer',
+   DownloadingFromServer= 'DownloadingFromServer',
+   DownloadingComplete= 'DownloadingComplete',
+   DownloadingError= 'DownloadingError'
 }
