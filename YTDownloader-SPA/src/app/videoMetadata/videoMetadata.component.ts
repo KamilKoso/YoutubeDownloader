@@ -25,8 +25,10 @@ export class VideoMetadataComponent implements OnInit {
   videoMetadata: any;
   videoUrl: string;
   selectedQuality: string;
+  selectedMediaType = 'as';
   getMetadataFailed = false;
 
+  MediaTypes = ['Mp3', 'Mp4'];
 
   status: VideoDownloadStatus = VideoDownloadStatus.NotDownloading;
 
@@ -34,9 +36,13 @@ export class VideoMetadataComponent implements OnInit {
 
   ngOnInit() { }
 
+  downloadAudio() {
 
-  downloadFile() {
+  }
+
+  downloadVideo() {
     this.status = VideoDownloadStatus.DownloadingToTheServer;
+
     this.fileService.downloadFile(this.selectedQuality, this.videoMetadata.id).subscribe(response => {
       this.status = VideoDownloadStatus.DownloadingFromServer;
       const blob: any = new Blob([response.body], {type: 'application/x-www-form-urlencoded'});
@@ -53,9 +59,12 @@ export class VideoMetadataComponent implements OnInit {
   getMetadata() {
     this.status = VideoDownloadStatus.NotDownloading;
     this.getMetadataFailed = false;
+    this.videoMetadata = null;
+    this.selectedQuality = null;
+
     let params = new HttpParams();
     params = params.append('videoUrl', this.videoUrl);
-    this.http.get(this.baseURL + '/VideoDownload/GetVideoMetaData', {params})
+    this.http.get(this.baseURL + '/Download/GetVideoMetaData', {params})
     .subscribe(response => {
         this.videoMetadata = response;
     },

@@ -42,14 +42,33 @@ namespace YTDownloader.API.Domain.Entities
             return new VideoDetails() { id = videoId, ChannelName = video.Author, Title = video.Title, qualities = qualities, thumbnails = video.Thumbnails };
         }
 
+        /// <summary>
+        /// Downloads video and saves it to the provided videoPath folder
+        /// </summary>
+        /// <param name="id">ID of the video to download</param>
+        /// <param name="quality">Choosen quality of the video</param>
+        /// <param name="videoPath">Path where file should be saved without extension at the end</param>
+        /// <returns></returns>
         public async Task DownloadVideo(string id, string quality, string videoPath)
         {
-            MediaStreamInfoSet streamInfoSet;
-            streamInfoSet = await client.GetVideoMediaStreamInfosAsync(id);
+            MediaStreamInfoSet streamInfoSet = await client.GetVideoMediaStreamInfosAsync(id);
             var audioStreamInfo = streamInfoSet.Audio.WithHighestBitrate();
             var videoStreamInfo = streamInfoSet.Video.FirstOrDefault(c => c.VideoQualityLabel == quality);
             var mediaStreamInfos = new MediaStreamInfo[] { audioStreamInfo, videoStreamInfo };
             await converter.DownloadAndProcessMediaStreamsAsync(mediaStreamInfos, videoPath, "mp4");
+        }
+
+        /// <summary>
+        ///  Downloads audio and saves it to the provided audioPath folder
+        /// </summary>
+        /// <param name="id">id of the youtube video</param>
+        /// <param name="audioPath">Path where file should be saved without extension at the end</param>
+        /// <returns></returns>
+        public async Task DownloadAudio(string id, string audioPath)
+        {
+            MediaStreamInfoSet streamInfoSet = await client.GetVideoMediaStreamInfosAsync(id);
+            var audioInfo = streamInfoSet.Audio.WithHighestBitrate();
+            await client.DownloadMediaStreamAsync(audioInfo, audioPath);
         }
 
          IEnumerable<string> SortQualities(IEnumerable<string> qualities)

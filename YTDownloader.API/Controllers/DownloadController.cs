@@ -13,13 +13,13 @@ namespace YTDownloader.API.Controllers
     //http://localhost:63219/
     [ApiController]
     [Route("[controller]")]
-    public class VideoDownloadController : ControllerBase
+    public class DownloadController : ControllerBase
     {
         private IYoutubeClientHelper clientHelper;
         private readonly IWebHostEnvironment env;
         
 
-        public VideoDownloadController(IYoutubeClientHelper client, IWebHostEnvironment env)
+        public DownloadController(IYoutubeClientHelper client, IWebHostEnvironment env)
         {
             this.clientHelper = client;
             this.env = env;
@@ -55,16 +55,38 @@ namespace YTDownloader.API.Controllers
                 return BadRequest(new string("Provided ID is incorrect"));
             }
 
-            var video = await clientHelper.GetVideoMetadata(id);
             MemoryStream videoStream = await stream.prepareVideoStream(videoPath); // No need to dispose MemoryStream, GC will take care of this
             CleanDirectory.DeleteFile(videoDir, id + ".mp4");
 
             if (videoStream == null)
                 return BadRequest();
-            return File(videoStream, "video/mp4", video.Title);
+            return File(videoStream, "video/mp4", id);
             
         }
 
-        
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> GetAudio(string id)
+        {
+            VideoStream stream = new VideoStream();
+            string audioPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp3";
+            string audioDir = env.WebRootPath + "\\DownloadedVideos";
+
+            try
+            {
+                await clientHelper.DownloadAudio(id, audioPath);
+            }
+            catch (ArgumentException)
+            {
+                return BadRequest(new string("Provided ID is incorrect"));
+            }
+
+            MemoryStream audioStream = await stream.prepareVideoStream(audioPath); // No need to dispose MemoryStream, GC will take care of this
+            CleanDirectory.DeleteFile(audioDir, id + ".mp3");
+
+            if (audioStream == null)
+                return BadRequest();
+            return File(audioStream, "audio/mp3", id);
+        }
     }
 }

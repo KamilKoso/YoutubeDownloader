@@ -13,27 +13,47 @@
   </div>
  </div>
 
-<div *ngIf="videoMetadata">
- <div class="row" @fade> 
+<div *ngIf="videoMetadata" @fade>
+
+  <div class="row">
+    <div class="col-md-12 justify-content-center form-inline">
+        <div class="p-1 btn-group btn-group-toggle" data-toggle="buttons" *ngFor="let item of MediaTypes">
+          <label class="btn form-inline" [ngClass]="selectedMediaType==item ? 'btn-success' : 'btn-secondary' "><input type="radio" [(ngModel)]="selectedMediaType" name="mediaType" value="{{item}}" required>{{item}}</label>
+        </div>
+    </div>
+  </div>
+
+
+ <div class="row"> 
   <div class="col-md-12 justify-content-center d-flex align-items-center">
     <img src="{{videoMetadata.thumbnails.mediumResUrl}}" class="img-fluid" style="height: 70%;">
   </div>
  </div>
  
- <div class="row" @fade>
+ <div class="row">
   <div class="col-md-12 justify-content-center d-flex align-items-center">
     <p class="lead font-weight-bold">{{videoMetadata.title}}</p>
   </div>
 </div>
 
- <div class="row">
+<div class="row" @fade *ngIf="selectedMediaType=='Mp3'">
   <div class="col-md-12">
-    <form #videoForm='ngForm' class="justify-content-center form-inline" (ngSubmit)="downloadFile()">
+    <div class="w-100 d-flex justify-content-center">
+    <form #audioForm='ngForm' class="justify-content-center form-inline" (ngSubmit)="downloadAudio()">
+      <button  class="btn btn-outline-info my-2 my-ms-0" type="submit">Download !</button>
+    </form>
+    </div>
+  </div>
+</div>
+
+ <div class="row" @fade *ngIf="selectedMediaType=='Mp4'">
+  <div class="col-md-12">
+    <form #videoForm='ngForm' class="justify-content-center form-inline" (ngSubmit)="downloadVideo()">
      <div class="p-1 btn-group btn-group-toggle" data-toggle="buttons" *ngFor="let item of videoMetadata.qualities">
      <label class="btn form-inline" [ngClass]="selectedQuality==item ? 'btn-success' : 'btn-secondary' "><input type="radio" [(ngModel)]="selectedQuality" name="quality" value="{{item}}" required>{{item}}</label>
      </div>
      <div class="w-100 d-flex justify-content-center">
-     <button *ngIf="selectedQuality" @fade class="btn btn-outline-info my-2 my-ms-0" type="submit">Download video</button>
+     <button @fade *ngIf="selectedQuality " class="btn btn-outline-info my-2 my-ms-0" type="submit">Download !</button>
      </div>
     </form>
    </div>   
