@@ -5,7 +5,7 @@ import {VideoDownloadStatus} from '../helpers/VideoDownloadStatusEnum';
 
 import {FileDownloadService} from '../services/FileDownload/FileDownload.service';
 import * as fileSaver from 'file-saver';
-import {fade} from '../services/Animations/fade';
+import {fade, translateLeft, translateRight, fadeFast} from '../services/Animations/fade';
 
 
 
@@ -15,7 +15,10 @@ import {fade} from '../services/Animations/fade';
   templateUrl: './VideoMetadata.component.html',
   styleUrls: ['./VideoMetadata.component.css'],
   animations: [
-    fade
+    fade,
+    fadeFast,
+    translateRight,
+    translateLeft,
   ]
 })
 export class VideoMetadataComponent implements OnInit {
@@ -25,7 +28,7 @@ export class VideoMetadataComponent implements OnInit {
   videoMetadata: any;
   videoUrl: string;
   selectedQuality: string;
-  selectedMediaType = 'as';
+  selectedMediaType: string;
   getMetadataFailed = false;
 
   MediaTypes = ['Mp3', 'Mp4'];
@@ -37,13 +40,26 @@ export class VideoMetadataComponent implements OnInit {
   ngOnInit() { }
 
   downloadAudio() {
+    this.status = VideoDownloadStatus.DownloadingToTheServer;
+
+    this.fileService.downloadAudio(this.videoMetadata.id).subscribe(response => {
+      this.status = VideoDownloadStatus.DownloadingFromServer;
+      const blob: any = new Blob([response.body], {type: 'application/x-www-form-urlencoded'});
+      fileSaver.saveAs(blob, this.videoMetadata.title + '.mp3');
+    },
+    error => {
+      this.status = VideoDownloadStatus.DownloadingError;
+    },
+    () => {
+      this.status = VideoDownloadStatus.DownloadingComplete;
+    });
 
   }
 
   downloadVideo() {
     this.status = VideoDownloadStatus.DownloadingToTheServer;
 
-    this.fileService.downloadFile(this.selectedQuality, this.videoMetadata.id).subscribe(response => {
+    this.fileService.downloadVideo(this.selectedQuality, this.videoMetadata.id).subscribe(response => {
       this.status = VideoDownloadStatus.DownloadingFromServer;
       const blob: any = new Blob([response.body], {type: 'application/x-www-form-urlencoded'});
       fileSaver.saveAs(blob, this.videoMetadata.title + '.mp4');

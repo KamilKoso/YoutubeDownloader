@@ -12,11 +12,17 @@ export class FileDownloadService {
 
 constructor(private http: HttpClient) {}
 
- downloadFile(quality, videoID): Observable<HttpResponse<Blob>> {
+ downloadVideo(quality, videoID): Observable<HttpResponse<Blob>> {
   let params = new HttpParams();
   params = params.append('quality', quality).append('id', videoID);
 
   return this.http.post(this.baseURL + '/Download/GetVideo', undefined , {observe: 'response', responseType: 'blob', params} );
   }
+
+  downloadAudio(videoID): Observable<HttpResponse<Blob>> {
+    let params = new HttpParams();
+    params = params.append('id', videoID);
+    return this.http.post(this.baseURL + '/Download/GetAudio', undefined , {observe: 'response', responseType: 'blob', params} );
+    }
 }
 
