@@ -5,7 +5,7 @@ import {VideoDownloadStatus} from '../helpers/VideoDownloadStatusEnum';
 
 import {FileDownloadService} from '../services/FileDownload/FileDownload.service';
 import * as fileSaver from 'file-saver';
-import {fade, translateLeft, translateRight, fadeFast} from '../services/Animations/fade';
+import {fade, fadeFast} from '../services/Animations/fade';
 
 
 
@@ -17,8 +17,6 @@ import {fade, translateLeft, translateRight, fadeFast} from '../services/Animati
   animations: [
     fade,
     fadeFast,
-    translateRight,
-    translateLeft,
   ]
 })
 export class VideoMetadataComponent implements OnInit {
@@ -79,6 +77,7 @@ export class VideoMetadataComponent implements OnInit {
     this.getMetadataFailed = false;
     this.videoMetadata = null;
     this.selectedQuality = null;
+    this.selectedMediaType = null;
 
     let params = new HttpParams();
     params = params.append('videoUrl', this.videoUrl);
