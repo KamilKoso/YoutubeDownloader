@@ -1,3 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
 @import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+
+.body-backgound{
+    background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #000000);
+    background-size: 400% 20000%;
+    animation: gradient 20s ease infinite;
+    overflow-x:hidden;
+}
+
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}

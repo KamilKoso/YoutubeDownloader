@@ -8,7 +8,7 @@
 
     <form #urlForm="ngForm" class="form-inline justify-content-center" (ngSubmit)="getMetadata()" >
       <input class="form-control mr-sm-2 w-50" type="text" name="videoUrl" placeholder="Provide your URL" [(ngModel)]="videoUrl"  #videoUrlvalidate='ngModel' pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" required >
-        <button class="btn my-2 my-sm-0" type="submit" [ngClass]="(videoUrlvalidate.errors?.pattern && videoUrlvalidate.touched) ? 'btn-danger': 'btn-outline-success'" [disabled]="videoUrlvalidate.errors?.pattern && videoUrlvalidate.touched" >Parse Video</button>
+        <button class="btn my-2 my-sm-0" type="submit" [ngClass]="(videoUrlvalidate.errors?.pattern && videoUrlvalidate.touched) ? 'btn-danger': 'btn-success'" [disabled]="videoUrlvalidate.errors?.pattern && videoUrlvalidate.touched" >Parse Video</button>
     </form>
   </div>
  </div>
@@ -52,13 +52,13 @@
      <label class="btn form-inline" [ngClass]="selectedQuality==item ? 'btn-success' : 'btn-secondary' "><input type="radio" [(ngModel)]="selectedQuality" name="quality" value="{{item}}" required>{{item}}</label>
      </div>
      <div class="w-100 d-flex justify-content-center">
-     <button @fadeFast *ngIf="selectedQuality " class="btn btn-outline-info my-2 my-ms-0" type="submit">Download !</button>
+     <button @fadeFast *ngIf="selectedQuality " class="btn btn-info my-2 my-ms-0" type="submit">Download !</button>
      </div>
     </form>
   </div>
   <div @translateRight *ngIf="selectedMediaType=='Mp3'">
     <form #audioForm='ngForm' class="justify-content-center form-inline" (ngSubmit)="downloadAudio()">
-      <button class="btn btn-outline-info my-2 my-ms-0" type="submit">Download !</button>
+      <button class="btn btn-info my-2 my-ms-0" type="submit">Download !</button>
     </form>
   </div>
    </div>   

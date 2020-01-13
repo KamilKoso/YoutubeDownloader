@@ -30,6 +30,7 @@ export class VideoMetadataComponent implements OnInit {
   selectedQuality: string;
   selectedMediaType: string;
   getMetadataFailed = false;
+  animationLeftOrRight: string;
 
   MediaTypes = ['Mp3', 'Mp4'];
 
@@ -38,6 +39,7 @@ export class VideoMetadataComponent implements OnInit {
   constructor(private http: HttpClient, private fileService: FileDownloadService) { }
 
   ngOnInit() { }
+
 
   downloadAudio() {
     this.status = VideoDownloadStatus.DownloadingToTheServer;
