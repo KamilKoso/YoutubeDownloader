@@ -90,5 +90,4 @@ export class VideoMetadataComponent implements OnInit {
       console.log(error);
     });
   }
-
 }

@@ -28,7 +28,7 @@ namespace YTDownloader.API
         {
             services.AddControllers();
             services.AddScoped<IYoutubeClient, YoutubeClient>();
-            services.AddScoped<IYoutubeClientHelper, YoutubeClientHelper>();
+            services.AddScoped<IYoutubeClientHelper>(s=>new YoutubeClientHelper(new YoutubeClient(), env.WebRootPath + "\\ffmpeg.exe"));
             services.AddCors();
             services.AddAntiforgery();
 

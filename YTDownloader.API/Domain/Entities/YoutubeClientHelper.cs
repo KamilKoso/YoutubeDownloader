@@ -15,15 +15,18 @@ namespace YTDownloader.API.Domain.Entities
     public class YoutubeClientHelper:IYoutubeClientHelper
     {
         IYoutubeClient client;
-        readonly IWebHostEnvironment env;
         IYoutubeConverter converter;
-
-        public YoutubeClientHelper(IYoutubeClient client, IWebHostEnvironment env)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="client">YoutubeClient instance</param>
+        /// <param name="ffmpegExePath">//Path to the ffmpeg.exe file used to mux audio&video stream. It should be located in wwwrooot/ffmpeg.exe</param>
+        public YoutubeClientHelper(IYoutubeClient client, string ffmpegExePath)
         {
-            this.env = env;
+          
             this.client = client;
 
-            string ffmpegExePath = env.WebRootPath + "\\ffmpeg.exe"; //Path to the ffmpeg.exe file used to mux audio&video stream. It should be located in wwwrooot/ffmpeg.exe
+            
             converter = new YoutubeConverter(client, ffmpegExePath);
             
         }
