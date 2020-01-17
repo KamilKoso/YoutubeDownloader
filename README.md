@@ -10,5 +10,4 @@ Front end of the app was made using Angular 8.2.14, Bootstrap 4.41, Animate.css 
 <h2>Back-end</h2>
 
 <h2>How does it work ? </h2>
-<img src="https://media.giphy.com/media/U5J6siZVheaK47wj53/giphy.gif">
-<img src="https://media.giphy.com/media/LrLJaJTGvFB3qZ2wx8/giphy.gif">
+<img src="https://media.giphy.com/media/U5J6siZVheaK47wj53/giphy.gif" width="40" height="40"/><img src="https://media.giphy.com/media/LrLJaJTGvFB3qZ2wx8/giphy.gif" width="600" height="600"/>
