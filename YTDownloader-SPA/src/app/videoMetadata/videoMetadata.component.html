@@ -8,7 +8,7 @@
 
     <form #urlForm="ngForm" class="form-inline justify-content-center" (ngSubmit)="getMetadata()" >
       <input class="form-control mr-sm-2 w-50" type="text" name="videoUrl" placeholder="Provide your URL" [(ngModel)]="videoUrl"  #videoUrlvalidate='ngModel' pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" required >
-        <button class="btn my-2 my-sm-0" type="submit" [ngClass]="(videoUrlvalidate.errors?.pattern && videoUrlvalidate.touched) ? 'btn-danger': 'btn-success'" [disabled]="videoUrlvalidate.errors?.pattern && videoUrlvalidate.touched" >Parse Video</button>
+        <button class="btn my-2 my-sm-0" type="submit" [ngClass]="(videoUrlvalidate.errors && videoUrlvalidate.touched) ? 'btn-danger': 'btn-success'" [disabled]="videoUrlvalidate.errors && videoUrlvalidate.touched" >Parse Video</button>
     </form>
   </div>
  </div>
@@ -69,10 +69,10 @@
    <div class="col-md-12 d-flex justify-content-center">
      <div *ngIf="status">
      <div [ngSwitch]="status">
-       <div @fade *ngSwitchCase="'DownloadingToTheServer'">Downloading to the server</div>
-       <div @fade *ngSwitchCase="'DownloadingFromServer'">Your video is prepared to download</div>
-       <div @fade *ngSwitchCase="'DownloadingComplete'">Downloading completed !</div>
-       <div @fade *ngSwitchCase="'DownloadingError'">Downloading error</div>
+       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingToTheServer'">Downloading to the server. This may take a while</div>
+       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingFromServer'">Your video is prepared to download</div>
+       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingComplete'">Downloading completed !</div>
+       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingError'">Downloading error</div>
      </div>
     </div>
    </div>
