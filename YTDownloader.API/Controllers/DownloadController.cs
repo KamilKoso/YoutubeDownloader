@@ -37,7 +37,7 @@ namespace YTDownloader.API.Controllers
         }
 
 
-        //Saves video in the wwwroot/DownloadedVideo dir sends it .
+        //Saves video in the wwwroot/DownloadedVideo dir and returns it .
         [HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> GetVideo(string id, string quality)
@@ -85,7 +85,7 @@ namespace YTDownloader.API.Controllers
             CleanDirectory.DeleteFile(audioDir, id + ".mp3");
 
             if (audioStream == null)
-                return BadRequest();
+                return BadRequest(new string("Something went wrong ! "));
             return File(audioStream, "audio/mp3", id);
         }
     }

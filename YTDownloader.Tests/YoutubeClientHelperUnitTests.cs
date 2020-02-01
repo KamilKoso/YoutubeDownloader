@@ -1,8 +1,11 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using YTDownloader.API.Domain.Entities;
-using YTDownloader.API.Domain.Abstract;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using YoutubeExplode;
-using Microsoft.AspNetCore.Hosting;
+using YTDownloader.API.Domain.Abstract;
+using YTDownloader.API.Domain.Entities;
+using YTDownloader.API.Models;
 
 namespace YTDownloader.Tests
 {
@@ -58,5 +61,32 @@ namespace YTDownloader.Tests
             foreach (bool b in wasExceptionThrowed)
                 Assert.IsTrue(b);
         }
+
+        [TestMethod]
+        public async Task canGetVideoMetadata()
+        {
+            //Arrange
+            string[] testIds = {
+                "Bey4XXJAqS8",
+                "HmZKgaHa3Fg",
+                "2MpUj-Aua48",
+            };
+            VideoDetails[] results = new VideoDetails[testIds.Length];
+            //Act
+            for(int i=0;i<testIds.Length;i++)
+            {
+                results[i]= await helper.GetVideoMetadata(testIds[i]);
+            }
+
+            //Assert
+            Assert.AreEqual("4K VIDEO ultrahd hdr sony 4K VIDEOS demo test nature relaxation movie for 4k oled tv", results[0].Title);
+            Assert.AreEqual("LoungeV Films - Relaxing Music and Nature Sounds", results[1].ChannelName);
+
+
+            List<string> actualQualities = results[2].qualities.ToList(); //VideoURL: https://m.youtube.com/watch?v=2MpUj-Aua48
+            List<string> expectedQualities = new List<string>() {"144p", "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p" };
+            Assert.IsTrue(Enumerable.SequenceEqual(actualQualities.OrderBy(x => x), expectedQualities.OrderBy(x => x)));
+        }
+
     }
 }

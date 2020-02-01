@@ -1,14 +1,11 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using YoutubeExplode;
-using YoutubeExplode.Models.MediaStreams;
-using YTDownloader.API.Models;
 using YoutubeExplode.Converter;
+using YoutubeExplode.Models.MediaStreams;
 using YTDownloader.API.Domain.Abstract;
-using System.IO;
-using System;
+using YTDownloader.API.Models;
 
 namespace YTDownloader.API.Domain.Entities
 {
@@ -36,13 +33,13 @@ namespace YTDownloader.API.Domain.Entities
             return YoutubeClient.ParseVideoId(videoUrl);
         }
 
-        public async Task<VideoDetails> GetVideoMetadata(string videoId)
+        public async Task<VideoDetails> GetVideoMetadata(string videoID)
         {
-            var video = await client.GetVideoAsync(videoId);
-            MediaStreamInfoSet streamInfoSet = await client.GetVideoMediaStreamInfosAsync(videoId);
+            var video = await client.GetVideoAsync(videoID);
+            MediaStreamInfoSet streamInfoSet = await client.GetVideoMediaStreamInfosAsync(videoID);
             IEnumerable<string> qualities = SortQualities(streamInfoSet.GetAllVideoQualityLabels());
 
-            return new VideoDetails() { id = videoId, ChannelName = video.Author, Title = video.Title, qualities = qualities, thumbnails = video.Thumbnails };
+            return new VideoDetails() { id = videoID, ChannelName = video.Author, Title = video.Title, qualities = qualities, thumbnails = video.Thumbnails };
         }
 
         /// <summary>
