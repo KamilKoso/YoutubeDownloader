@@ -12,8 +12,8 @@ When server is starting, it deletes all the files and directories that are in /w
 
 **API's**
 
-**1. GetVideoMetaData** 
-localhost:{port}/Download/GetVideoMetaData?videoUrl={LinkToYoutube}
+**1. GetVideoMetaData** <br>
+localhost:{port}/Download/GetVideoMetaData?videoUrl={LinkToYoutube} <br>
 This api collects and returns metadata of videoUrl. Saves it to VideoDetails model. VideoDetails model contains: ID of the Youtube video, Channel name, Title of the Youtube video, Qualities of the Youtube video, Thumbnails in different resolutions
 
 **2. GetVideo**
