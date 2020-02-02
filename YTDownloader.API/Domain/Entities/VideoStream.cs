@@ -8,7 +8,7 @@ namespace YTDownloader.API.Domain.Entities
 {
     public class VideoStream
     {
-        public async Task<MemoryStream> prepareVideoStream(string videoPath)
+        public async Task<MemoryStream> PrepareVideoStream(string videoPath)
         {
             if (!File.Exists(videoPath))
                 return null;

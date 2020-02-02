@@ -12,11 +12,11 @@ namespace YTDownloader.Tests
     [TestClass]
     public class YoutubeClientHelperUnitTests
     {
-        private static IYoutubeClient client = new YoutubeClient();
-        private IYoutubeClientHelper helper= new YoutubeClientHelper(client, "..//YTDownloader.API//wwwroot//ffmpeg.exe");
+        private static readonly IYoutubeClient client = new YoutubeClient();
+        private readonly IYoutubeClientHelper helper= new YoutubeClientHelper(client, "..//YTDownloader.API//wwwroot//ffmpeg.exe");
 
         [TestMethod]
-        public void canGetYoutubeID()
+        public void CanGetYoutubeID()
         {
             //Arrange
             string[] testLinks = {
@@ -63,7 +63,7 @@ namespace YTDownloader.Tests
         }
 
         [TestMethod]
-        public async Task canGetVideoMetadata()
+        public async Task CanGetVideoMetadata()
         {
             //Arrange
             string[] testIds = {

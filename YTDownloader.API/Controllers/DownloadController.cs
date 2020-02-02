@@ -15,7 +15,7 @@ namespace YTDownloader.API.Controllers
     [Route("[controller]")]
     public class DownloadController : ControllerBase
     {
-        private IYoutubeClientHelper clientHelper;
+        private readonly IYoutubeClientHelper clientHelper;
         private readonly IWebHostEnvironment env;
         
 
@@ -55,7 +55,7 @@ namespace YTDownloader.API.Controllers
                 return BadRequest(new string("Provided ID is incorrect"));
             }
 
-            MemoryStream videoStream = await stream.prepareVideoStream(videoPath); // No need to dispose MemoryStream, GC will take care of this
+            MemoryStream videoStream = await stream.PrepareVideoStream(videoPath); // No need to dispose MemoryStream, GC will take care of this
             CleanDirectory.DeleteFile(videoDir, id + ".mp4");
 
             if (videoStream == null)
@@ -81,7 +81,7 @@ namespace YTDownloader.API.Controllers
                 return BadRequest(new string("Provided ID is incorrect"));
             }
 
-            MemoryStream audioStream = await stream.prepareVideoStream(audioPath); // No need to dispose MemoryStream, GC will take care of this
+            MemoryStream audioStream = await stream.PrepareVideoStream(audioPath); // No need to dispose MemoryStream, GC will take care of this
             CleanDirectory.DeleteFile(audioDir, id + ".mp3");
 
             if (audioStream == null)

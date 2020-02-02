@@ -11,8 +11,8 @@ namespace YTDownloader.API.Domain.Entities
 {
     public class YoutubeClientHelper:IYoutubeClientHelper
     {
-        IYoutubeClient client;
-        IYoutubeConverter converter;
+        readonly IYoutubeClient client;
+        readonly IYoutubeConverter converter;
         /// <summary>
         /// 
         /// </summary>
