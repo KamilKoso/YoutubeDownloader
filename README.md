@@ -33,5 +33,6 @@ This api lets you download .mp3 file in highest possible bitrate. It gets youtub
 <img src="https://media.giphy.com/media/U5J6siZVheaK47wj53/giphy.gif" /><img src="https://media.giphy.com/media/LrLJaJTGvFB3qZ2wx8/giphy.gif" />
 
 <h2>Bugs and problems</h2>
-1. Videos that size exceed 2 GB cannot be downloaded due to MemoryStream limits - **SOLVED** <br>
+1. Videos that size exceed 2 GB cannot be downloaded due to MemoryStream limits - **SOLVED** 
+<br>
 2. GetVideo/GetAudio uses fire and forget method to delete downloaded files. That's not very good solution :/
