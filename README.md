@@ -31,3 +31,6 @@ This api lets you download .mp3 file in highest possible bitrate. It gets youtub
 
 <h2>How does it work ? </h2>
 <img src="https://media.giphy.com/media/U5J6siZVheaK47wj53/giphy.gif" /><img src="https://media.giphy.com/media/LrLJaJTGvFB3qZ2wx8/giphy.gif" />
+
+<h2>Bugs</h2>
+1. Videos that size exceed 2 GB cannot be downloaded due to MemoryStream limits
