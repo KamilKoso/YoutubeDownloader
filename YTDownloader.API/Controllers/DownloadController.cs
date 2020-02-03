@@ -42,7 +42,7 @@ namespace YTDownloader.API.Controllers
         [Route("[action]")]
         public async Task<IActionResult> GetVideo(string id, string quality)
         {
-            VideoStream stream = new VideoStream();
+            
             string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
             string videoDir = env.WebRootPath + "\\DownloadedVideos";
              
@@ -55,20 +55,20 @@ namespace YTDownloader.API.Controllers
                 return BadRequest(new string("Provided ID is incorrect"));
             }
 
-            MemoryStream videoStream = await stream.PrepareVideoStream(videoPath); // No need to dispose MemoryStream, GC will take care of this
-            CleanDirectory.DeleteFile(videoDir, id + ".mp4");
+#pragma warning disable 4014
+            //Fire and forget method that will delete the file after 60 seconds. That's not the best solution but i haven't came up with a better
+            //one yet.
+            CleanDirectory.DeleteFileAfterTime(60, videoDir, id + ".mp4").ConfigureAwait(false);    
+#pragma warning restore 4014
 
-            if (videoStream == null)
-                return BadRequest();
-            return File(videoStream, "video/mp4", id);
-            
+            return PhysicalFile(videoPath, "video/mp4", id);
         }
 
         [HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> GetAudio(string id)
         {
-            VideoStream stream = new VideoStream();
+          
             string audioPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp3";
             string audioDir = env.WebRootPath + "\\DownloadedVideos";
 
@@ -81,12 +81,13 @@ namespace YTDownloader.API.Controllers
                 return BadRequest(new string("Provided ID is incorrect"));
             }
 
-            MemoryStream audioStream = await stream.PrepareVideoStream(audioPath); // No need to dispose MemoryStream, GC will take care of this
-            CleanDirectory.DeleteFile(audioDir, id + ".mp3");
+#pragma warning disable 4014
+            //Fire and forget method that will delete the file after 30 seconds. That's not the best solution but i haven't came up with a better
+            //one yet.
+            CleanDirectory.DeleteFileAfterTime(30, audioDir, id + ".mp3").ConfigureAwait(false);
+#pragma warning restore 4014
 
-            if (audioStream == null)
-                return BadRequest(new string("Something went wrong ! "));
-            return File(audioStream, "audio/mp3", id);
+            return PhysicalFile(audioPath, "audio/mp3", id);
         }
     }
 }

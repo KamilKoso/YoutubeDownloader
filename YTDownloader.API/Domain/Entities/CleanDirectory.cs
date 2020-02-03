@@ -1,4 +1,6 @@
 ﻿using System.IO;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace YTDownloader.API.Domain.Entities
 {
@@ -26,6 +28,14 @@ namespace YTDownloader.API.Domain.Entities
         {
             FileInfo file = new FileInfo(Path.Combine(path,fileName));
             file.Delete();
+        }
+
+        public async static Task DeleteFileAfterTime(int timeInSeconds, string path, string fileName)
+        {
+            await Task.Run(()=> {
+                Thread.Sleep(timeInSeconds * 1000);
+                DeleteFile(path, fileName);
+                }).ConfigureAwait(false);
         }
     }
 }
