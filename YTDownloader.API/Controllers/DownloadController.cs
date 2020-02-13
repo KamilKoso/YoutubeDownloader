@@ -29,9 +29,15 @@ namespace YTDownloader.API.Controllers
         [Route("[action]")]
         public async Task<IActionResult> GetVideoMetaData(string videoUrl)
         {
-            VideoDetails details= await clientHelper.GetVideoMetadata(clientHelper.GetVideoID(videoUrl));
-            if (details == null)
-                return BadRequest("Something went wrong");
+            VideoDetails details;
+            try 
+            { 
+             details= await clientHelper.GetVideoMetadata(clientHelper.GetVideoID(videoUrl));
+            }
+            catch(FormatException)
+            { 
+                return BadRequest("Provided URL is incorrect");
+            }
 
             return Ok(details);
         }
