@@ -66,7 +66,7 @@ namespace YTDownloader.Tests
             Assert.Equal("LoungeV Films - Relaxing Music and Nature Sounds", results[1].ChannelName);
 
 
-            List<string> actualQualities = results[0].qualities.ToList(); //VideoURL: https://m.youtube.com/watch?v=2MpUj-Aua48
+            List<string> actualQualities = results[0].qualities.ToList();
             List<string> expectedQualities = new List<string>() { "144p", "240p", "360p", "480p", "720p", "1080p", "1440p", "2160p" };
             Assert.True(Enumerable.SequenceEqual(actualQualities.OrderBy(x => x), expectedQualities.OrderBy(x => x)));
         }
