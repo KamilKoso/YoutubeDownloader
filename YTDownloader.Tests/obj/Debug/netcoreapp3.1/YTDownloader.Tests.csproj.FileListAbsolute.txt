@@ -101,3 +101,10 @@ C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\obj\Debug\netcoreapp
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\obj\Debug\netcoreapp3.1\YTDownloader.Tests.csproj.CopyComplete
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\obj\Debug\netcoreapp3.1\YTDownloader.Tests.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\obj\Debug\netcoreapp3.1\YTDownloader.Tests.pdb
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\bin\Debug\netcoreapp3.1\xunit.abstractions.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\bin\Debug\netcoreapp3.1\xunit.assert.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\bin\Debug\netcoreapp3.1\xunit.core.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\bin\Debug\netcoreapp3.1\xunit.execution.dotnet.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\bin\Debug\netcoreapp3.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\bin\Debug\netcoreapp3.1\xunit.runner.reporters.netcoreapp10.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.Tests\bin\Debug\netcoreapp3.1\xunit.runner.utility.netcoreapp10.dll

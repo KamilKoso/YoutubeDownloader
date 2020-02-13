@@ -4,10 +4,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using YoutubeExplode;
-using YoutubeExplode.Converter;
 using YTDownloader.API.Domain.Entities;
 using YTDownloader.API.Domain.Abstract;
-using System.IO;
 
 namespace YTDownloader.API
 {

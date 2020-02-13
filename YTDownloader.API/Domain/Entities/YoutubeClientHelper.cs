@@ -47,7 +47,7 @@ namespace YTDownloader.API.Domain.Entities
         /// </summary>
         /// <param name="id">ID of the video to download</param>
         /// <param name="quality">Choosen quality of the video</param>
-        /// <param name="videoPath">Path where file should be saved without extension at the end</param>
+        /// <param name="videoPath">Path where file should be saved and what file should be named with extension at the end (.mp4/.mp3).</param>
         /// <returns></returns>
         public async Task DownloadVideo(string id, string quality, string videoPath)
         {

@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using YTDownloader.API.Models;
 using Microsoft.AspNetCore.Hosting;
 using YTDownloader.API.Domain.Entities;
-using System.IO;
 using YTDownloader.API.Domain.Abstract;
 
 
@@ -49,8 +48,8 @@ namespace YTDownloader.API.Controllers
         public async Task<IActionResult> GetVideo(string id, string quality)
         {
             
-            string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
-            string videoDir = env.WebRootPath + "\\DownloadedVideos";
+             string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
+             string videoDir = env.WebRootPath + "\\DownloadedVideos";
              
             try
             {
