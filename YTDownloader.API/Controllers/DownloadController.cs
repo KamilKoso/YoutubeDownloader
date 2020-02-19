@@ -5,6 +5,7 @@ using YTDownloader.API.Models;
 using Microsoft.AspNetCore.Hosting;
 using YTDownloader.API.Domain.Entities;
 using YTDownloader.API.Domain.Abstract;
+using YTDownloader.API.Custom;
 
 
 namespace YTDownloader.API.Controllers
@@ -60,13 +61,7 @@ namespace YTDownloader.API.Controllers
                 return BadRequest(new string("Provided ID is incorrect"));
             }
 
-#pragma warning disable 4014
-            //Fire and forget method that will delete the file after 60 seconds. That's not the best solution but i haven't came up with a better
-            //one yet.
-            CleanDirectory.DeleteFileAfterTime(60, videoDir, id + ".mp4").ConfigureAwait(false);    
-#pragma warning restore 4014
-
-            return PhysicalFile(videoPath, "video/mp4", id);
+            return new PhysicalFileResultAndDelete(videoPath, "video/mp4");
         }
 
         [HttpPost]
@@ -86,13 +81,7 @@ namespace YTDownloader.API.Controllers
                 return BadRequest(new string("Provided ID is incorrect"));
             }
 
-#pragma warning disable 4014
-            //Fire and forget method that will delete the file after 30 seconds. That's not the best solution but i haven't came up with a better
-            //one yet.
-            CleanDirectory.DeleteFileAfterTime(30, audioDir, id + ".mp3").ConfigureAwait(false);
-#pragma warning restore 4014
-
-            return PhysicalFile(audioPath, "audio/mp3", id);
+            return new PhysicalFileResultAndDelete(audioPath, "audio/mp3");
         }
     }
 }

@@ -8,7 +8,7 @@
 
     <form #urlForm="ngForm" class="form-inline justify-content-center" (ngSubmit)="getMetadata()" >
       <input class="form-control mr-sm-2 w-50" type="text" name="videoUrl" placeholder="Provide your URL" [(ngModel)]="videoUrl"  #videoUrlvalidate='ngModel' pattern="^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$" required >
-        <button class="btn my-2 my-sm-0" type="submit" [ngClass]="(videoUrlvalidate.errors && videoUrlvalidate.touched) ? 'btn-danger': 'btn-success'" [disabled]="videoUrlvalidate.errors && videoUrlvalidate.touched" >Parse Video</button>
+        <button class="btn my-2 my-sm-0" type="submit" [ngClass]="(videoUrlvalidate.errors && videoUrlvalidate.touched) ? 'btn-danger': 'btn-success'" [disabled]="videoUrlvalidate.errors && videoUrlvalidate.touched" >Get Video</button>
     </form>
   </div>
  </div>

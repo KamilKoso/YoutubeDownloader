@@ -30,6 +30,12 @@ namespace YTDownloader.API.Domain.Entities
             file.Delete();
         }
 
+        public static void DeleteFile(string pathAndFileName)
+        {
+            FileInfo file = new FileInfo(pathAndFileName);
+            file.Delete();
+        }
+
         public async static Task DeleteFileAfterTime(int timeInSeconds, string path, string fileName)
         {
             await Task.Run(()=> {
