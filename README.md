@@ -3,7 +3,7 @@
 <h2>Introduction</h2>
 This project is simple website that will download Mp3 or Mp4 files in every possibble quality from YouTube. It uses <a href="https://github.com/Tyrrrz/YoutubeExplode">YoutubeExplode</a> along with <a href="https://github.com/Tyrrrz/YoutubeExplode.Converter">YoutubeExplode.Converter</a> under the hood. 
 <h3>Front-end</h3>
-Front end of the app was made using Angular 8.2.14, Bootstrap 4.41, Animate.css 3.7.2. Code may be mess, before coding this project i  hadn't virtually known anything about JS, TS, Angular. Still learning tho. Code is pretty simple and self explaining. 
+Front end of the app was made using Angular 8.2.14, Bootstrap 4.41, Animate.css 3.7.2. Code may be mess, before coding this project i  didn't know virtually anything about JS, TS, Angular. Still learning tho. Code is pretty simple and self explaining. 
 
 
 
