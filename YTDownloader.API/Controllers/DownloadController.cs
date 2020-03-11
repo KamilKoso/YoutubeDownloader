@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YTDownloader.API.Models;
 using Microsoft.AspNetCore.Hosting;
-using YTDownloader.API.Domain.Entities;
 using YTDownloader.API.Domain.Abstract;
 using YTDownloader.API.Custom;
 

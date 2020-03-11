@@ -1,5 +1,4 @@
 ﻿using System.IO;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace YTDownloader.API.Domain.Entities
@@ -9,7 +8,7 @@ namespace YTDownloader.API.Domain.Entities
         public static void DeleteAllFiles(string path)
         {
             DirectoryInfo directory = new DirectoryInfo(path);
-            foreach(FileInfo file in directory.EnumerateFiles())
+            foreach (FileInfo file in directory.EnumerateFiles())
             {
                 file.Delete();
             }
@@ -24,24 +23,24 @@ namespace YTDownloader.API.Domain.Entities
             }
         }
 
-        public static void DeleteFile(string path, string fileName)
+        public static async Task DeleteFile(string path, string fileName)
         {
-            FileInfo file = new FileInfo(Path.Combine(path,fileName));
-            file.Delete();
+            await Task.Run(() =>
+            {
+                FileInfo file = new FileInfo(Path.Combine(path, fileName));
+                file.Delete();
+            });
         }
 
-        public static void DeleteFile(string pathAndFileName)
+        public static async Task DeleteFile(string pathAndFileName)
         {
-            FileInfo file = new FileInfo(pathAndFileName);
-            file.Delete();
+           await Task.Run(() =>
+            {
+                FileInfo file = new FileInfo(pathAndFileName);
+                file.Delete();
+            });
         }
 
-        public async static Task DeleteFileAfterTime(int timeInSeconds, string path, string fileName)
-        {
-            await Task.Run(()=> {
-                Thread.Sleep(timeInSeconds * 1000);
-                DeleteFile(path, fileName);
-                }).ConfigureAwait(false);
-        }
+
     }
 }

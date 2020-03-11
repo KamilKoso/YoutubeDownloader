@@ -27,10 +27,12 @@ namespace YTDownloader.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddScoped<IYoutubeClient, YoutubeClient>();
-            services.AddScoped<IYoutubeClientHelper>(s=>new YoutubeClientHelper(new YoutubeClient(), env.WebRootPath + "\\ffmpeg.exe"));
             services.AddCors();
             services.AddAntiforgery();
+
+            services.AddScoped<IYoutubeClient, YoutubeClient>();
+            services.AddScoped<IYoutubeClientHelper>(s => new YoutubeClientHelper(new YoutubeClient(), env.WebRootPath + "\\ffmpeg.exe"));
+            services.AddScoped<IAuthRepository, AuthRepository>();
 
             services.AddDbContext<UserContext>(options =>
             {
