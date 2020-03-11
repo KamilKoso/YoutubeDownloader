@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -16,7 +15,6 @@ namespace YTDownloader.Tests
     public class YoutubeClientHelperTests
     {
         const string ffmpegPath = "..//..//..//..//YTDownloader.API//wwwroot//ffmpeg.exe"; //This should be ./YTDownloader/YTDownloader.API/wwwroot/ffmpeg.exe. If ffmpeg.exe is in other location change this string.
-        private static readonly IWebHostEnvironment env;
         private static readonly IYoutubeClient client = new YoutubeClient();
         private readonly IYoutubeClientHelper helper = new YoutubeClientHelper(client, ffmpegPath);
 
@@ -96,7 +94,7 @@ namespace YTDownloader.Tests
         [Theory]
         [InlineData("Bey4XXJAqS8", "..//..//..//TestMediaDir")]
         [InlineData("HmZKgaHa3Fg", "..//..//..//TestMediaDir")]
-        public async Task DownloadAudio_CanDownloadVideo(string id, string videoPath)
+        public async Task DownloadAudio_CanDownloadAudio(string id, string videoPath)
         {
             string videoPathAndName = videoPath + $"//{id}.mp3";
             await helper.DownloadAudio(id, videoPathAndName);
