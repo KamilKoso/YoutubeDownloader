@@ -50,7 +50,7 @@ namespace YTDownloader.API.Controllers
         {
             
              string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
-             string videoDir = env.WebRootPath + "\\DownloadedVideos";
+             
              
             try
             {
@@ -70,7 +70,6 @@ namespace YTDownloader.API.Controllers
         {
           
             string audioPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp3";
-            string audioDir = env.WebRootPath + "\\DownloadedVideos";
 
             try
             {

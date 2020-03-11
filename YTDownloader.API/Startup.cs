@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
 using YoutubeExplode;
 using YTDownloader.API.Domain.Entities;
 using YTDownloader.API.Domain.Abstract;
+using YTDownloader.API.Domain.Concrete;
 
 namespace YTDownloader.API
 {
@@ -29,6 +31,11 @@ namespace YTDownloader.API
             services.AddScoped<IYoutubeClientHelper>(s=>new YoutubeClientHelper(new YoutubeClient(), env.WebRootPath + "\\ffmpeg.exe"));
             services.AddCors();
             services.AddAntiforgery();
+
+            services.AddDbContext<UserContext>(options =>
+            {
+                options.UseSqlServer(Configuration.GetConnectionString("Default"));
+            });
 
             //Clear wwwroot/DownloadedVideos dir
             string videosPath = env.WebRootPath + "\\DownloadedVideos";

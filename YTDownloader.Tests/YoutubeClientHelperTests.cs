@@ -16,7 +16,6 @@ namespace YTDownloader.Tests
     public class YoutubeClientHelperTests
     {
         const string ffmpegPath = "..//..//..//..//YTDownloader.API//wwwroot//ffmpeg.exe"; //This should be ./YTDownloader/YTDownloader.API/wwwroot/ffmpeg.exe. If ffmpeg.exe is in other location change this string.
-        private static readonly IWebHostEnvironment env;
         private static readonly IYoutubeClient client = new YoutubeClient();
         private readonly IYoutubeClientHelper helper = new YoutubeClientHelper(client, ffmpegPath);
 
@@ -73,7 +72,7 @@ namespace YTDownloader.Tests
 
         
         [Fact]
-        public void ffmpeg_CheckIfFfmpegExists()
+        public void Ffmpeg_CheckIfFfmpegExists()
         {
             //If this test fails, DownloadVideo test will fail too. Make sure ffmpeg is in correct location
             //Default correct location is in ./YTDownloader/YTDownloader.API/wwwrooot/ffmpeg.exe
