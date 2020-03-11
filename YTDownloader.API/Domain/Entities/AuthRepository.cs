@@ -19,9 +19,10 @@ namespace YTDownloader.API.Domain.Entities
             this.context = context;
         }
 
-        public async Task<User> Login(string username, string password)
+        public async Task<User> Login(string UsernameOrEmail, string password)
         {
-            var user = await context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            var user = await context.Users.FirstOrDefaultAsync(x => x.Username == UsernameOrEmail || x.EmailAddress == UsernameOrEmail);
+
             if (user == null)
                 return null;
             if (!VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
@@ -44,9 +45,9 @@ namespace YTDownloader.API.Domain.Entities
             return user;
         }
 
-        public async Task<bool> UserExists(string username)
+        public async Task<bool> UserExists(string username, string email)
         {
-            if (await context.Users.AnyAsync(x => x.Username == username))
+            if (await context.Users.AnyAsync(x => x.Username == username) || await context.Users.AnyAsync(x=> x.EmailAddress == email))
                 return true;
             else
                 return false;

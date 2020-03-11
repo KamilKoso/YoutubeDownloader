@@ -21,11 +21,11 @@ namespace YTDownloader.API.Controllers
         [HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> Register(UserForRegisterDTO userForRegisterDto)
-        {
+        { 
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
             userForRegisterDto.Email = userForRegisterDto.Email.ToLower();
 
-            if (await repository.UserExists(userForRegisterDto.Username))
+            if (await repository.UserExists(userForRegisterDto.Username, userForRegisterDto.Email))
                 return BadRequest("User already exists !");
 
             User userToCreate = new User()
@@ -40,6 +40,18 @@ namespace YTDownloader.API.Controllers
             return StatusCode(201);
         }
 
+        [HttpPost]
+        [Route("[action]")]
+        public async Task<IActionResult> Login(UserForLoginDTO userForLoginDto)
+        {
+            var userFromRepo = await repository.Login(userForLoginDto.UsernameOrEmail.ToLower(), userForLoginDto.Password);
+            if (userFromRepo == null)
+                return Unauthorized("Provided login or password is incorrect");
+
+            //To be continued. JWT Token needs to be created here
+
+            return Ok();
+        }
         
 
     }
