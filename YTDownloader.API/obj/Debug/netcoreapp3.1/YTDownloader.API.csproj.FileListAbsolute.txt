@@ -47,7 +47,6 @@ C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\obj\Debug\netcoreapp3.
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.pdb
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.csprojAssemblyReference.cache
-C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.dll
@@ -81,3 +80,8 @@ C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard2.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\YTDownloader.EFDataAccess.pdb
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.MvcApplicationPartsAssemblyInfo.cache

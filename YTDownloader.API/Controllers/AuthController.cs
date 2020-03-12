@@ -1,6 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using YTDownloader.API.Domain.Abstract;
+using YTDownloader.API.Domain.Entities;
 using YTDownloader.API.Models;
 using YTDownloader.EFDataAccess.Models;
 
@@ -12,10 +15,12 @@ namespace YTDownloader.API.Controllers
     public class AuthController : ControllerBase
     {
         private readonly IAuthRepository repository;
+        public IConfiguration config;
 
-        public AuthController(IAuthRepository repository)
+        public AuthController(IAuthRepository repository, IConfiguration config)
         {
             this.repository = repository;
+            this.config = config;
         }
 
         [HttpPost]
@@ -44,13 +49,17 @@ namespace YTDownloader.API.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Login(UserForLoginDTO userForLoginDto)
         {
-            var userFromRepo = await repository.Login(userForLoginDto.UsernameOrEmail.ToLower(), userForLoginDto.Password);
+            User userFromRepo = await repository.Login(userForLoginDto.UsernameOrEmail.ToLower(), userForLoginDto.Password);
             if (userFromRepo == null)
                 return Unauthorized("Provided login or password is incorrect");
 
-            //To be continued. JWT Token needs to be created here
+            JwtTokenGenerator tokenGenerator = new JwtTokenGenerator();
+            string key = config.GetSection("AppSettings:TokenKey").Value;
+            DateTime tokenExpiration = DateTime.Now.AddHours(12);
 
-            return Ok();
+            string token = tokenGenerator.GenerateToken(userFromRepo.Id, userFromRepo.Username, key, tokenExpiration);
+           
+            return Ok(token);
         }
         
 

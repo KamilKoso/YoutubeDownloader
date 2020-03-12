@@ -19,9 +19,9 @@ namespace YTDownloader.API.Domain.Entities
             this.context = context;
         }
 
-        public async Task<User> Login(string UsernameOrEmail, string password)
+        public async Task<User> Login(string usernameOrEmail, string password)
         {
-            var user = await context.Users.FirstOrDefaultAsync(x => x.Username == UsernameOrEmail || x.EmailAddress == UsernameOrEmail);
+            var user = await context.Users.FirstOrDefaultAsync(x => x.Username == usernameOrEmail || x.EmailAddress == usernameOrEmail);
 
             if (user == null)
                 return null;
