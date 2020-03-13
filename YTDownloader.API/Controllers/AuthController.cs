@@ -37,7 +37,7 @@ namespace YTDownloader.API.Controllers
             {
                 Username = userForRegisterDto.Username,
                 EmailAddress = userForRegisterDto.Email,
-                UserAccountLevel = AccountLevel.None,
+                UserAccountLevel = AccountLevel.Standard,
             
             };
             var createdUser = await repository.Register(userToCreate, userForRegisterDto.Password);

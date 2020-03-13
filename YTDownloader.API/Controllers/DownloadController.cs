@@ -5,7 +5,9 @@ using YTDownloader.API.Models;
 using Microsoft.AspNetCore.Hosting;
 using YTDownloader.API.Domain.Abstract;
 using YTDownloader.API.Custom;
-
+using Microsoft.AspNetCore.Authorization;
+using YTDownloader.EFDataAccess.Models;
+using System.Collections.Generic;
 
 namespace YTDownloader.API.Controllers
 {
@@ -16,28 +18,29 @@ namespace YTDownloader.API.Controllers
     {
         private readonly IYoutubeClientHelper clientHelper;
         private readonly IWebHostEnvironment env;
-        
+        private readonly IAccountPermissionChecker checker;
 
-        public DownloadController(IYoutubeClientHelper client, IWebHostEnvironment env)
+        public DownloadController(IYoutubeClientHelper client, IWebHostEnvironment env, IAccountPermissionChecker checker)
         {
             this.clientHelper = client;
             this.env = env;
+            this.checker = checker;
         }
 
         [HttpGet]
         [Route("[action]")]
         public async Task<IActionResult> GetVideoMetaData(string videoUrl)
         {
+
             VideoDetails details;
-            try 
-            { 
-             details= await clientHelper.GetVideoMetadata(clientHelper.GetVideoID(videoUrl));
+            try
+            {
+                details = await clientHelper.GetVideoMetadata(clientHelper.GetVideoID(videoUrl));
             }
-            catch(FormatException)
-            { 
+            catch (FormatException)
+            {
                 return BadRequest("Provided URL is incorrect");
             }
-
             return Ok(details);
         }
 
@@ -47,13 +50,21 @@ namespace YTDownloader.API.Controllers
         [Route("[action]")]
         public async Task<IActionResult> GetVideo(string id, string quality)
         {
-            
-             string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
-             
-             
+            //Check if provided quality as parameter is available in the video
+            var videoMetadata = await clientHelper.GetVideoMetadata(id);
+            if (!((List<string>)videoMetadata.qualities).Contains(quality))
+                return BadRequest("Invalid quality !");
+
+            //Check if user is authorized and has required AccountLevel
+            bool isAlowedToDownload = await checker.CanDownloadInCertainQuality(quality, User.Identity.IsAuthenticated, User.Identity.Name);
+            if (!isAlowedToDownload)
+                return BadRequest("You are not allowed to download this video !");
+
+
+            string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
             try
             {
-               await clientHelper.DownloadVideo(id, quality, videoPath);
+                await clientHelper.DownloadVideo(id, quality, videoPath);
             }
             catch (ArgumentException)
             {
@@ -67,7 +78,7 @@ namespace YTDownloader.API.Controllers
         [Route("[action]")]
         public async Task<IActionResult> GetAudio(string id)
         {
-          
+
             string audioPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp3";
 
             try

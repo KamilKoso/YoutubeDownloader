@@ -84,4 +84,7 @@ C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\Admin\source\repos\YTDownloader\YTDownloader.API\obj\Debug\netcoreapp3.1\YTDownloader.API.MvcApplicationPartsAssemblyInfo.cache

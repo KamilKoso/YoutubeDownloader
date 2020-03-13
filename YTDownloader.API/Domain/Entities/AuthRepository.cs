@@ -5,6 +5,7 @@ using YTDownloader.API.Models;
 using System.Security.Cryptography;
 using System.Text;
 using Microsoft.EntityFrameworkCore;
+using YTDownloader.EFDataAccess.Models;
 
 namespace YTDownloader.API.Domain.Entities
 {
@@ -54,8 +55,7 @@ namespace YTDownloader.API.Domain.Entities
         }
 
         #endregion
-
-#region private methods
+        #region private methods
 
         private void CreatePasswordHashSalt(string password, out byte[] passwordHash, out byte[] passwordSalt)
         {

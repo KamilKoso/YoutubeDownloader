@@ -45,6 +45,10 @@
       "frameworks": {
         "netcoreapp3.1": {
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[3.1.2, )"
@@ -69,7 +73,7 @@
             },
             "YoutubeExplode": {
               "target": "Package",
-              "version": "[4.7.11, )"
+              "version": "[4.7.15, )"
             },
             "YoutubeExplode.Converter": {
               "target": "Package",
