@@ -4,15 +4,19 @@ import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { VideoMetadataComponent } from './videoMetadata/videoMetadata.component';
+import { VideoMetadataComponent } from './videoDownload/videoDownload.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NavComponent } from './nav/nav.component';
+import { AuthService } from './services/Auth/auth.service';
+import { FileDownloadService } from './services/FileDownload/FileDownload.service';
 
 
 
 @NgModule({
    declarations: [
       AppComponent,
-      VideoMetadataComponent
+      VideoMetadataComponent,
+      NavComponent
    ],
    imports: [
       BrowserModule,
@@ -20,7 +24,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       FormsModule,
       BrowserAnimationsModule,
    ],
-   providers: [],
+   providers: [
+      AuthService,
+      FileDownloadService,
+
+   ],
    bootstrap: [
       AppComponent
    ]

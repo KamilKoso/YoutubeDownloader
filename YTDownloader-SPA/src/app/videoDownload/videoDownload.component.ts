@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpParams, HttpClient, HttpHeaders } from '@angular/common/http';
 import {VideoDownloadStatus} from '../helpers/VideoDownloadStatusEnum';
+import * as globals from '../global';
 
 
 import {FileDownloadService} from '../services/FileDownload/FileDownload.service';
@@ -12,8 +13,8 @@ import {fade, fadeFast} from '../services/Animations/fade';
 
 @Component({
   selector: 'app-video-metadata',
-  templateUrl: './VideoMetadata.component.html',
-  styleUrls: ['./VideoMetadata.component.css'],
+  templateUrl: './videoDownload.component.html',
+  styleUrls: ['./videoDownload.component.css'],
   animations: [
     fade,
     fadeFast,
@@ -22,7 +23,6 @@ import {fade, fadeFast} from '../services/Animations/fade';
 export class VideoMetadataComponent implements OnInit {
 
 
-  baseURL = 'http://localhost:5000';
   videoMetadata: any;
   videoUrl: string;
   selectedQuality: string;
@@ -81,7 +81,7 @@ export class VideoMetadataComponent implements OnInit {
 
     let params = new HttpParams();
     params = params.append('videoUrl', this.videoUrl);
-    this.http.get(this.baseURL + '/Download/GetVideoMetaData', {params})
+    this.http.get(globals.baseApiUrl + '/Download/GetVideoMetaData', {params})
     .subscribe(response => {
         this.videoMetadata = response;
     },

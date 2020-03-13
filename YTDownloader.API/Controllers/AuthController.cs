@@ -57,9 +57,8 @@ namespace YTDownloader.API.Controllers
             string key = config.GetSection("AppSettings:TokenKey").Value;
             DateTime tokenExpiration = DateTime.Now.AddHours(12);
 
-            string token = tokenGenerator.GenerateToken(userFromRepo.Id, userFromRepo.Username, key, tokenExpiration);
            
-            return Ok(token);
+            return Ok(new{token = tokenGenerator.GenerateToken(userFromRepo.Id, userFromRepo.Username, key, tokenExpiration)});
         }
         
 

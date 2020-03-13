@@ -89,7 +89,7 @@ namespace YTDownloader.Tests
             string videoPathAndName = videoPath + $"//{id}.mp4";
             await helper.DownloadVideo(id, quality, videoPathAndName);
             Assert.True(File.Exists(videoPathAndName));
-            CleanDirectory.DeleteFile(videoPath, id + ".mp4");
+            await CleanDirectory.DeleteFile(videoPath, id + ".mp4");
         }
 
         [Theory]
@@ -100,7 +100,7 @@ namespace YTDownloader.Tests
             string videoPathAndName = videoPath + $"//{id}.mp3";
             await helper.DownloadAudio(id, videoPathAndName);
             Assert.True(File.Exists(videoPathAndName));
-            CleanDirectory.DeleteFile(videoPath, id + ".mp3");
+            await CleanDirectory.DeleteFile(videoPath, id + ".mp3");
         }
     }
 }
