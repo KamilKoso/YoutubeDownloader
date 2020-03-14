@@ -39,14 +39,18 @@ namespace YTDownloader.API.Domain.Entities
             var accountLevel = await CheckAccountLevel(username);
 
             if (isAuthenticated)
+            {
                 if (qualityInt <= 1080)
+                {
                     if (accountLevel == AccountLevel.Standard)  //Standard users max quality is 1080p
                         return true;
                     else if (accountLevel == AccountLevel.Gold)  //Gold users can download in every quality
                         return true;
+                }
+            }
             else
               if (qualityInt <= 720)            //Non registered users can download only in 720p and lower qualities
-                        return true;
+                return true;
 
             return false;
         }

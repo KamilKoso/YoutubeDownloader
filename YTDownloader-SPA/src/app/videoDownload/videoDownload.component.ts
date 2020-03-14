@@ -66,6 +66,7 @@ export class VideoMetadataComponent implements OnInit {
     },
     error => {
       this.status = VideoDownloadStatus.DownloadingError;
+      console.log(error);
     },
     () => {
       this.status = VideoDownloadStatus.DownloadingComplete;
