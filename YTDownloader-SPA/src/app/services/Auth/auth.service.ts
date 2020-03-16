@@ -20,4 +20,9 @@ login(model: any) {
         }));
 }
 
+
+getToken() {
+  return localStorage.getItem('token');
+  }
 }
+

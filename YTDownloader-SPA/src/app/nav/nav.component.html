@@ -5,11 +5,28 @@
       <li class="nav-item active">
         <a class="nav-link" href="#">Buy YTGold </a>
       </li>
+      <li class="nav-item" *ngIf="!loggedIn()">
+        <a class="nav-link" href="#">Register</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link" href="#">FAQ</a>
       </li>
     </ul>
-    <form #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+
+    <div *ngIf="loggedIn()" class="dropdown">
+      <a class="dropdown-toggle text-light" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+        Hello user
+      </a>
+    
+      <div class="dropdown-menu dropdown-menu-right" >
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit profile</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-money-bill-wave"></i>Buy YTGold</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)=logout()><i class="fa fa-sign-out"></i>Logout</a>
+      </div>
+    </div>
+
+    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
       <input class="form-control mr-sm-2" type="text" placeholder="Login" [(ngModel)]="model.UsernameOrEmail" name="UsernameOrEmail" required>
       <input class="form-control mr-sm-2" type="password" placeholder="Password" [(ngModel)]="model.Password" name="Password" required>
       <button [disabled]="!loginForm.valid" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
