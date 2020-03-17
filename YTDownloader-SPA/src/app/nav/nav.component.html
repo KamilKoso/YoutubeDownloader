@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Youtube Downloader</a>
+  <a class="navbar-brand" href="#"><i class="fa fa-youtube-play"></i> Youtube Downloader</a>
  
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
@@ -13,16 +13,16 @@
       </li>
     </ul>
 
-    <div *ngIf="loggedIn()" class="dropdown">
-      <a class="dropdown-toggle text-light" role="button" id="dropdownMenuLink" data-toggle="dropdown">
+    <div ngbDropdown *ngIf="loggedIn()" class="dropdown" display="dynamic">
+      <a ngbDropdownToggle class="text-light dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown">
         Hello user
       </a>
     
-      <div class="dropdown-menu dropdown-menu-right" >
-        <a class="dropdown-item" href="#"><i class="fa fa-user"></i>Edit profile</a>
-        <a class="dropdown-item" href="#"><i class="fa fa-money-bill-wave"></i>Buy YTGold</a>
+      <div ngbDropdownMenu  class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Edit profile</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-dollar"></i> Buy YTGold</a>
         <div class="dropdown-divider"></div>
-        <a class="dropdown-item" (click)=logout()><i class="fa fa-sign-out"></i>Logout</a>
+        <a class="dropdown-item" (click)=logout()><i class="fa fa-sign-out"></i> Logout</a>
       </div>
     </div>
 

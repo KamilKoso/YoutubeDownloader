@@ -24,14 +24,10 @@ constructor(private http: HttpClient, private auth: AuthService) {}
     headers: {Authorization: `Bearer ${this.auth.getToken()}`}});
   }
 
-
   downloadAudio(videoID): Observable<HttpResponse<Blob>> {
     let params = new HttpParams();
     params = params.append('id', videoID);
-
-
-    return this.http.post(globals.baseApiUrl + '/Download/GetAudio', undefined ,
-    {observe: 'response', responseType: 'blob', params } );
+    return this.http.post(globals.baseApiUrl + '/Download/GetAudio', undefined , {observe: 'response', responseType: 'blob', params} );
     }
 }
 
