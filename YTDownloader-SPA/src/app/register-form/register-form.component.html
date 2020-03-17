@@ -1,0 +1,27 @@
+<div class="modal-header">
+ <h2>Register</h2>
+</div>
+<form class="container" [formGroup]="registerModel" novalidate>
+<div class="modal-body">
+
+<div class="form-group">
+<label for="login" class="control-label">Login</label>
+<input type="text" id="login" class="form-control" placeholder="Login" formControlName="login">
+</div>
+
+<div class="form-group">
+<label for="email">E-mail</label>
+<input type="email" id="email" class="form-control" [ngClass]="{}" placeholder="E-mail" formControlName="email">
+</div>
+
+<div class="form-group">
+<label for="password">Password</label>
+<input type="password" id="password" class="form-control" placeholder="Password" formControlName="password">
+</div>
+
+</div>
+<div class="modal-footer">
+  <button type="submit" class="btn btn-success mr-auto">Register</button>
+  <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>
+</form>

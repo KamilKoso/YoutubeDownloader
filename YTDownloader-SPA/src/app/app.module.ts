@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
@@ -10,28 +10,34 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NavComponent } from './nav/nav.component';
 import { AuthService } from './services/Auth/auth.service';
 import { FileDownloadService } from './services/FileDownload/FileDownload.service';
+import { RegisterFormComponent } from './register-form/register-form.component';
 
 
 @NgModule({
    declarations: [
       AppComponent,
       VideoMetadataComponent,
-      NavComponent
+      NavComponent,
+      RegisterFormComponent
    ],
    imports: [
       BrowserModule,
       NgbModule,
       HttpClientModule,
       FormsModule,
-      BrowserAnimationsModule,
+      ReactiveFormsModule,
+      BrowserAnimationsModule
    ],
    providers: [
       AuthService,
-      FileDownloadService,
-
+      FileDownloadService
    ],
    bootstrap: [
       AppComponent
-   ]
+   ],
+
+   entryComponents: [
+      RegisterFormComponent
+    ]
 })
 export class AppModule { }

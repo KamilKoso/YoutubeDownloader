@@ -6,14 +6,14 @@
         <a class="nav-link" href="#">Buy YTGold </a>
       </li>
       <li class="nav-item" *ngIf="!loggedIn()">
-        <a class="nav-link" href="#">Register</a>
+        <a class="nav-link" href="#" (click)="open()">Register</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">FAQ</a>
       </li>
     </ul>
 
-    <div ngbDropdown *ngIf="loggedIn()" class="dropdown" display="dynamic">
+    <div ngbDropdown *ngIf="loggedIn()" class="dropdown" display="dynamic"  placement="bottom-right">
       <a ngbDropdownToggle class="text-light dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown">
         Hello user
       </a>
