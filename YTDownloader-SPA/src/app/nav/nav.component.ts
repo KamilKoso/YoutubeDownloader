@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-      this.toastr.info("Welcome back !")
+      this.toastr.success('Welcome back !');
     }, (error: HttpErrorResponse) => {
         this.toastr.error(error.error);
     });

@@ -13,6 +13,7 @@
   </div>
  </div>
 
+ <div *ngIf="gettingMetadata" class="loader-md mx-auto mt-2 align-self-center"></div>
 <div *ngIf="videoMetadata" @fade>  
   <div class="row">
     <div class="col-md-12 justify-content-center form-inline">
@@ -69,10 +70,10 @@
    <div class="col-md-12 d-flex justify-content-center">
      <div *ngIf="status">
      <div [ngSwitch]="status">
-       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingToTheServer'">Downloading to the server. This may take a while</div>
-       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingFromServer'">Your video is prepared to download</div>
-       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingComplete'">Downloading completed !</div>
-       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingError'">Downloading error</div>
+      <div *ngSwitchCase="'DownloadingFromServer'" class="loader-md mx-auto mt-2 align-self-center"></div>
+      <div *ngSwitchCase="'DownloadingToTheServer'" class="loader-md mx-auto mt-2 align-self-center"></div>
+       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingComplete'">Completed !</div>
+       <div class="animated bounceIn font-weight-bold text-white" *ngSwitchCase="'DownloadingError'">Error occured ! Try again'</div>
      </div>
     </div>
    </div>

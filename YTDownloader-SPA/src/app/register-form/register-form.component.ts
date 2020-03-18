@@ -17,7 +17,7 @@ export class RegisterFormComponent implements OnInit {
 
 registerModel: FormGroup;
 correctRegisterModel: any = {};
-serverError: string = null;
+submittedRegisterForm = false;
 
   ngOnInit() {
     this.registerModel = new FormGroup({
@@ -39,14 +39,16 @@ serverError: string = null;
   }
 
   register() {
-      if (this.registerModel.valid) {
+    this.submittedRegisterForm = true;
+    if (this.registerModel.valid) {
         this.correctRegisterModel = this.registerModel.getRawValue();
         this.auth.register(this.correctRegisterModel).subscribe(() => {
-            this.toastr.success("Registration completed successfully")
+            this.toastr.success('Registration completed successfully !');
+            this.activeModal.close();
         }, (error: HttpErrorResponse) => {
             this.toastr.error(error.error);
         });
-
+        this.submittedRegisterForm = false;
        }
       }
     }

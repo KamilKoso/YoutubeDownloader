@@ -30,8 +30,10 @@ namespace YTDownloader.API.Controllers
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
             userForRegisterDto.Email = userForRegisterDto.Email.ToLower();
 
-            if (await repository.UserExists(userForRegisterDto.Username, userForRegisterDto.Email))
-                return BadRequest("User already exists !");
+            if (await repository.UserExists(userForRegisterDto.Username))
+                return BadRequest("Login already taken !");
+            if (await repository.EmailExists(userForRegisterDto.Email))
+                return BadRequest("E-mail already in use");
 
             User userToCreate = new User()
             {

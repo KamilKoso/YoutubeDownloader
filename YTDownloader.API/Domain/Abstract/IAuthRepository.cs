@@ -8,7 +8,8 @@ namespace YTDownloader.API.Domain.Abstract
     {
         Task<User> Login(string usernameOrEmail, string password);
         Task<User> Register(User user, string password);
-        Task<bool> UserExists(string username, string email);
+        Task<bool> UserExists(string username);
+        Task<bool> EmailExists(string email);
         
 
     }

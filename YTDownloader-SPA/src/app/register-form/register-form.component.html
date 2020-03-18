@@ -18,12 +18,10 @@
 <label for="password">Password</label>
 <input type="password" id="password" class="form-control" placeholder="Password" formControlName="password">
 </div>
-
-<p class="form-control-feedback" *ngIf="serverError">{{serverError}}</p>
-
 </div>
 <div class="modal-footer">
-  <button type="submit" [disabled]="!registerModel.valid"  class="btn btn-success mr-auto">Register</button>
+  <div *ngIf="submittedRegisterForm" class="loader-md"></div>
+  <button type="submit" *ngIf="!submittedRegisterForm" [disabled]="!registerModel.valid"  class="btn btn-success mr-auto">Register</button>
   <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
 </div>
 </form>

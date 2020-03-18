@@ -13,7 +13,7 @@ namespace YTDownloader.API.Domain.Entities
     {
         private readonly UserContext context;
 
-#region public methods
+        #region public methods
 
         public AuthRepository(UserContext context)
         {
@@ -46,9 +46,17 @@ namespace YTDownloader.API.Domain.Entities
             return user;
         }
 
-        public async Task<bool> UserExists(string username, string email)
+        public async Task<bool> UserExists(string username)
         {
-            if (await context.Users.AnyAsync(x => x.Username == username) || await context.Users.AnyAsync(x=> x.EmailAddress == email))
+            if (await context.Users.AnyAsync(x => x.Username == username))
+                return true;
+            else
+                return false;
+        }
+
+        public async Task<bool> EmailExists(string email)
+        {
+            if (await context.Users.AnyAsync(x => x.EmailAddress == email))
                 return true;
             else
                 return false;
@@ -72,12 +80,12 @@ namespace YTDownloader.API.Domain.Entities
             {
                 var computedHash = hmac.ComputeHash(Encoding.UTF8.GetBytes(password));
 
-                for(int i=0;i<passwordHash.Length;i++)
+                for (int i = 0; i < passwordHash.Length; i++)
                     if (computedHash[i] != passwordHash[i])
                         return false;
             }
-          return true;
+            return true;
         }
-#endregion
+        #endregion
     }
 }
