@@ -3,7 +3,7 @@ import {AuthService} from '../services/Auth/auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterFormComponent } from '../register-form/register-form.component';
 import {HttpErrorResponse} from '@angular/common/http';
-import {ToastrService, Toast} from 'ngx-toastr';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -21,7 +21,7 @@ export class NavComponent implements OnInit {
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-
+      this.toastr.info("Welcome back !")
     }, (error: HttpErrorResponse) => {
         this.toastr.error(error.error);
     });
@@ -34,7 +34,7 @@ export class NavComponent implements OnInit {
 
   logout() {
     localStorage.removeItem('token');
-    console.log('You\'ve been logged out');
+    this.toastr.info('You\'ve been logged out');
   }
 
   open() {

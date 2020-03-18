@@ -28,7 +28,10 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
       FormsModule,
       ReactiveFormsModule,
       BrowserAnimationsModule,
-      ToastrModule.forRoot()
+      ToastrModule.forRoot({
+         positionClass: 'toast-bottom-right',
+         progressBar: true,
+      })
    ],
    providers: [
       AuthService,

@@ -3,7 +3,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
 import {AuthService} from '../services/Auth/auth.service';
 import {HttpErrorResponse} from '@angular/common/http';
-
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-register-form',
@@ -12,7 +12,7 @@ import {HttpErrorResponse} from '@angular/common/http';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal, private auth: AuthService) { }
+  constructor(public activeModal: NgbActiveModal, private auth: AuthService, private toastr: ToastrService) { }
 
 
 registerModel: FormGroup;
@@ -42,10 +42,9 @@ serverError: string = null;
       if (this.registerModel.valid) {
         this.correctRegisterModel = this.registerModel.getRawValue();
         this.auth.register(this.correctRegisterModel).subscribe(() => {
-
+            this.toastr.success("Registration completed successfully")
         }, (error: HttpErrorResponse) => {
-            this.serverError = error.error;
-
+            this.toastr.error(error.error);
         });
 
        }
