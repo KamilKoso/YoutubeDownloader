@@ -11,6 +11,7 @@ import { NavComponent } from './nav/nav.component';
 import { AuthService } from './services/Auth/auth.service';
 import { FileDownloadService } from './services/FileDownload/FileDownload.service';
 import { RegisterFormComponent } from './register-form/register-form.component';
+import {ToastrModule, ToastrService} from 'ngx-toastr';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { RegisterFormComponent } from './register-form/register-form.component';
       HttpClientModule,
       FormsModule,
       ReactiveFormsModule,
-      BrowserAnimationsModule
+      BrowserAnimationsModule,
+      ToastrModule.forRoot()
    ],
    providers: [
       AuthService,

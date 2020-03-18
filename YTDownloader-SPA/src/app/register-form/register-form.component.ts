@@ -1,8 +1,9 @@
-import { Component, OnInit  } from '@angular/core';
+import { Component, OnInit, ViewContainerRef  } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import {FormGroup, FormsModule, FormControl, ReactiveFormsModule, Validators} from '@angular/forms';
-import {BrowserModule} from '@angular/platform-browser';
-import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
+import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {AuthService} from '../services/Auth/auth.service';
+import {HttpErrorResponse} from '@angular/common/http';
+
 
 @Component({
   selector: 'app-register-form',
@@ -11,20 +12,23 @@ import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
 })
 export class RegisterFormComponent implements OnInit {
 
-  constructor(public activeModal: NgbActiveModal) { }
+  constructor(public activeModal: NgbActiveModal, private auth: AuthService) { }
+
 
 registerModel: FormGroup;
+correctRegisterModel: any = {};
+serverError: string = null;
 
   ngOnInit() {
     this.registerModel = new FormGroup({
-      login: new FormControl('', [
+      username: new FormControl('', [
         Validators.required,
         Validators.minLength(3),
         Validators.maxLength(15),
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.pattern('[^@]*@[^@]*'),
+        Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$')
       ]),
       password: new FormControl('', [
         Validators.required,
@@ -32,7 +36,18 @@ registerModel: FormGroup;
         Validators.maxLength(320),
       ]),
     });
-
   }
 
-}
+  register() {
+      if (this.registerModel.valid) {
+        this.correctRegisterModel = this.registerModel.getRawValue();
+        this.auth.register(this.correctRegisterModel).subscribe(() => {
+
+        }, (error: HttpErrorResponse) => {
+            this.serverError = error.error;
+
+        });
+
+       }
+      }
+    }

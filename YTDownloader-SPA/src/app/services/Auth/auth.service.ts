@@ -19,6 +19,8 @@ login(model: any) {
           }
         }));
 }
+
+register(model: any) {return this.http.post(globals.baseApiUrl + '/auth/register', model); }
 getToken() {
   return localStorage.getItem('token');
   }

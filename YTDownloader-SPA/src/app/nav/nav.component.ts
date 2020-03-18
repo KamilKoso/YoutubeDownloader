@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
 import {AuthService} from '../services/Auth/auth.service';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { RegisterFormComponent } from '../register-form/register-form.component';
+import {HttpErrorResponse} from '@angular/common/http';
+import {ToastrService, Toast} from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -12,16 +14,16 @@ export class NavComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private authService: AuthService, private modalService: NgbModal ) { }
+  constructor(private authService: AuthService, private modalService: NgbModal, private toastr: ToastrService ) { }
 
   ngOnInit() {
   }
 
   login() {
     this.authService.login(this.model).subscribe(next => {
-      console.log('succes');
-    }, error => {
-      console.log(error);
+
+    }, (error: HttpErrorResponse) => {
+        this.toastr.error(error.error);
     });
   }
 
@@ -36,7 +38,7 @@ export class NavComponent implements OnInit {
   }
 
   open() {
-    const modalRef = this.modalService.open(RegisterFormComponent,{size: 'lg'});
+    const modalRef = this.modalService.open(RegisterFormComponent, {size: 'lg'});
   }
 
 }

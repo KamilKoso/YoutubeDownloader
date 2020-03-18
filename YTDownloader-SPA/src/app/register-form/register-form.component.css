@@ -1,0 +1,16 @@
+
+.ng-valid:not(form)  {
+    border-color:  #42A948; 
+    background-color: rgb(206, 252, 208);
+  }
+
+/*.ng-invalid:not(form){
+    border-color:  rgb(214, 1, 1);
+    background-color: #ffdddd;
+}*/
+.form-control-feedback {
+    font-size: 75%;
+    font-weight:bold;
+    color: rgb(233, 0, 0)
+}
+
