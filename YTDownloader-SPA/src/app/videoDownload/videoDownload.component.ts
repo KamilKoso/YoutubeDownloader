@@ -23,7 +23,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class VideoMetadataComponent implements OnInit {
 
-
+  reader = new FileReader();
   videoMetadata: any;
   videoUrl: string;
   selectedQuality: string;
@@ -72,7 +72,10 @@ export class VideoMetadataComponent implements OnInit {
     },
     (error: HttpErrorResponse) => {
       this.status = VideoDownloadStatus.DownloadingError;
-      this.toastr.error('Error occured ! Try again');
+      this.reader.readAsText(error.error);
+      this.reader.addEventListener('loadend', () => {
+       this.toastr.error(this.reader.result.toString());
+     });
     },
     () => {
       this.status = VideoDownloadStatus.DownloadingComplete;
@@ -98,8 +101,10 @@ export class VideoMetadataComponent implements OnInit {
     },
     (error: HttpErrorResponse) => {
       this.getMetadataFailed = true;
+
       this.toastr.error('Error occured ! Try again');
       this.gettingMetadata = false;
+
     });
   }
 }
