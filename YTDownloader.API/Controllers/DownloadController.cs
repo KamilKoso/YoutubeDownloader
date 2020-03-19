@@ -56,9 +56,9 @@ namespace YTDownloader.API.Controllers
                 return BadRequest("Invalid quality !");
 
             //Check if user is authorized and has required AccountLevel
-            bool isAlowedToDownload = await checker.CanDownloadInCertainQuality(quality, User.Identity.IsAuthenticated, User.Identity.Name);
-            if (!isAlowedToDownload)
-                return BadRequest("You are not allowed to download this video !");
+            var isAlowedToDownload = await checker.CanDownloadInCertainQuality(quality, User.Identity.IsAuthenticated, User.Identity.Name);
+            if (!isAlowedToDownload.isAllowed)
+                return BadRequest(isAlowedToDownload.errorMessageIfNotAllowed);
 
 
             string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";

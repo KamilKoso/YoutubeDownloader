@@ -32,7 +32,7 @@ namespace YTDownloader.API.Domain.Entities
         /// <param name="isAuthenticated">We check if User.Identity.IsAuthenticated is true</param>
         /// <param name="username">We provide username only if isAuthorized is true</param>
         /// <returns></returns>
-        public async Task<bool> CanDownloadInCertainQuality(string quality, bool isAuthenticated, string username = null)
+        public async Task<(bool isAllowed, string errorMessageIfNotAllowed)> CanDownloadInCertainQuality(string quality, bool isAuthenticated, string username = null)
         {
             string[] splittedQuality = quality.Split('p');   //e.g. 720p60 => splittedQuality[0] = 720, splittedQuality[1] = 60
             int qualityInt = int.Parse(splittedQuality[0]);
@@ -40,19 +40,26 @@ namespace YTDownloader.API.Domain.Entities
 
             if (isAuthenticated)
             {
-                if (qualityInt <= 1080)
+                if (accountLevel == AccountLevel.Gold)
+                    return (true, "");
+
+                else if (qualityInt <= 1080)
                 {
                     if (accountLevel == AccountLevel.Standard)  //Standard users max quality is 1080p
-                        return true;
-                    else if (accountLevel == AccountLevel.Gold)  //Gold users can download in every quality
-                        return true;
+                        return (true, "");
                 }
+
+                else
+                    return (false, "You need to have YTGold in order to download in higher qualities ! ");
+                
             }
             else
-              if (qualityInt <= 720)            //Non registered users can download only in 720p and lower qualities
-                return true;
+              if (qualityInt <= 720)            //Not registered users can download only in 720p and lower qualities
+                return (true, "");
+            else
+                return (false, "You need to be logged in !");
 
-            return false;
+            return (false, "Something went wrong !");
         }
 
     }

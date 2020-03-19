@@ -23,7 +23,6 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class VideoMetadataComponent implements OnInit {
 
-  reader = new FileReader();
   videoMetadata: any;
   videoUrl: string;
   selectedQuality: string;
@@ -71,10 +70,11 @@ export class VideoMetadataComponent implements OnInit {
       fileSaver.saveAs(blob, this.videoMetadata.title + '.mp4');
     },
     (error: HttpErrorResponse) => {
+      const reader = new FileReader();
       this.status = VideoDownloadStatus.DownloadingError;
-      this.reader.readAsText(error.error);
-      this.reader.addEventListener('loadend', () => {
-       this.toastr.error(this.reader.result.toString());
+      reader.readAsText(error.error);
+      reader.addEventListener('loadend', () => {
+       this.toastr.error(reader.result.toString());
      });
     },
     () => {
