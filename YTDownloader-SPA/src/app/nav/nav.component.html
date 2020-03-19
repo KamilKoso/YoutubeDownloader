@@ -15,7 +15,7 @@
 
     <div ngbDropdown *ngIf="loggedIn()" class="dropdown" display="dynamic"  placement="bottom-right">
       <a ngbDropdownToggle class="text-light dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown">
-        Hello user
+        Hello {{authService.decodedToken.unique_name}}
       </a>
     
       <div ngbDropdownMenu  class="dropdown-menu dropdown-menu-right">

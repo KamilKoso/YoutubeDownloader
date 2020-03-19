@@ -43,7 +43,7 @@ export class VideoMetadataComponent implements OnInit {
 
   downloadAudio() {
     this.toastr.info('Starting processing your video. This may take a while !');
-    this.status=VideoDownloadStatus.DownloadingToTheServer;
+    this.status = VideoDownloadStatus.DownloadingToTheServer;
 
     this.fileService.downloadAudio(this.videoMetadata.id).subscribe(response => {
       this.status = VideoDownloadStatus.DownloadingFromServer;
@@ -64,7 +64,7 @@ export class VideoMetadataComponent implements OnInit {
   downloadVideo() {
     this.toastr.info('Starting processing your video. This may take a while !');
     this.status = VideoDownloadStatus.DownloadingToTheServer;
-    this.status=VideoDownloadStatus.DownloadingToTheServer;
+    this.status = VideoDownloadStatus.DownloadingToTheServer;
 
     this.fileService.downloadVideo(this.selectedQuality, this.videoMetadata.id).subscribe(response => {
       const blob: any = new Blob([response.body], {type: 'application/x-www-form-urlencoded'});

@@ -13,7 +13,7 @@
   </div>
  </div>
 
- <div *ngIf="gettingMetadata" class="loader-md mx-auto mt-2 align-self-center"></div>
+ <div *ngIf="gettingMetadata" @fadeFast class="loader-md mx-auto mt-2 align-self-center"></div>
 <div *ngIf="videoMetadata" @fade>  
   <div class="row">
     <div class="col-md-12 justify-content-center form-inline">

@@ -14,7 +14,7 @@ export class NavComponent implements OnInit {
 
   model: any = {};
 
-  constructor(private authService: AuthService, private modalService: NgbModal, private toastr: ToastrService ) { }
+  constructor(public authService: AuthService, private modalService: NgbModal, private toastr: ToastrService ) { }
 
   ngOnInit() {
   }
@@ -28,8 +28,7 @@ export class NavComponent implements OnInit {
   }
 
   loggedIn() {
-    const token = localStorage.getItem('token');
-    return !!token;
+    return this.authService.loggedIn();
   }
 
   logout() {
