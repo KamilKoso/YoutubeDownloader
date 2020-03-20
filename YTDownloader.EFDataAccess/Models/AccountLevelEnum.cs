@@ -2,8 +2,8 @@
 {
     public enum AccountLevel
     {
-        None = 0,
-        Standard = 1,
-        Gold = 2,
+        None = 0, //Registered, not confirmed e-mail. 
+        Standard = 1, //Registered, confirmed e-mail.
+        Gold = 2, //Registered, bought YTGold
     }
 }

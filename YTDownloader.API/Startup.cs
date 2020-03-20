@@ -48,6 +48,7 @@ namespace YTDownloader.API
             services.AddScoped<IYoutubeClientHelper>(s => new YoutubeClientHelper(new YoutubeClient(), env.WebRootPath + "\\ffmpeg.exe"));
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAccountPermissionChecker, AccountPermissionChecker>();
+            services.AddScoped<IUserRepository, UserRepository>();
 
             services.AddDbContext<UserContext>(options =>
             {

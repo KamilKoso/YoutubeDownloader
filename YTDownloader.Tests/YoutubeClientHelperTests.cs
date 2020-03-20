@@ -1,5 +1,4 @@
-﻿using Microsoft.AspNetCore.Hosting;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -17,7 +16,7 @@ namespace YTDownloader.Tests
     {
         const string ffmpegPath = "..//..//..//..//YTDownloader.API//wwwroot//ffmpeg.exe"; //This should be ./YTDownloader/YTDownloader.API/wwwroot/ffmpeg.exe. If ffmpeg.exe is in other location change this string.
         private static readonly IYoutubeClient client = new YoutubeClient();
-        private readonly IYoutubeClientHelper helper = new YoutubeClientHelper(client, ffmpegPath);
+        private readonly IYoutubeClientHelper target = new YoutubeClientHelper(client, ffmpegPath);
 
 
         [Theory]
@@ -28,7 +27,7 @@ namespace YTDownloader.Tests
             //Act
             string[] videoIds = new string[videoUrls.Length];
             for (int i = 0; i < videoUrls.Length; i++)
-                videoIds[i] = helper.GetVideoID(videoUrls[i]);
+                videoIds[i] = target.GetVideoID(videoUrls[i]);
 
             //Assert
             Assert.Equal("Bey4XXJAqS8", videoIds[0]);
@@ -45,7 +44,7 @@ namespace YTDownloader.Tests
         [InlineData("https://youtu.be/LXb3EKWsI")] //non existing video
         public void GetVideoID_ShouldThrowException(string videoUrl)
         {
-            Assert.Throws<FormatException>(()=>helper.GetVideoID(videoUrl));
+            Assert.Throws<FormatException>(()=>target.GetVideoID(videoUrl));
         }
 
         [Theory]
@@ -57,7 +56,7 @@ namespace YTDownloader.Tests
             //Act
             for (int i = 0; i < videoIds.Length; i++)
             {
-                results[i] = await helper.GetVideoMetadata(videoIds[i]);
+                results[i] = await target.GetVideoMetadata(videoIds[i]);
             }
 
             //Assert
@@ -87,7 +86,7 @@ namespace YTDownloader.Tests
         public async Task DownloadVideo_CanDownloadVideo(string id, string videoPath, string quality = "144p")
         {
             string videoPathAndName = videoPath + $"//{id}.mp4";
-            await helper.DownloadVideo(id, quality, videoPathAndName);
+            await target.DownloadVideo(id, quality, videoPathAndName);
             Assert.True(File.Exists(videoPathAndName));
             await CleanDirectory.DeleteFile(videoPath, id + ".mp4");
         }
@@ -98,7 +97,7 @@ namespace YTDownloader.Tests
         public async Task DownloadAudio_CanDownloadVideo(string id, string videoPath)
         {
             string videoPathAndName = videoPath + $"//{id}.mp3";
-            await helper.DownloadAudio(id, videoPathAndName);
+            await target.DownloadAudio(id, videoPathAndName);
             Assert.True(File.Exists(videoPathAndName));
             await CleanDirectory.DeleteFile(videoPath, id + ".mp3");
         }

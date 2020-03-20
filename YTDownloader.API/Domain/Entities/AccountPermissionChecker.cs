@@ -11,22 +11,14 @@ namespace YTDownloader.API.Domain.Entities
 {
     public class AccountPermissionChecker : IAccountPermissionChecker
     {
-        private readonly UserContext context;
-        public AccountPermissionChecker(UserContext context)
+        private readonly IUserRepository userRepo;
+        public AccountPermissionChecker(IUserRepository userRepo)
         {
-            this.context = context;
+            this.userRepo = userRepo;
         }
 
-        public async Task<AccountLevel> CheckAccountLevel(string username)
-        {
-            var user = await context.Users.FirstOrDefaultAsync(x => x.Username == username);
-            if (user != null)
-                return user.UserAccountLevel;
-            else
-                return AccountLevel.None;
-        }
         /// <summary>
-        /// We want to allow only registred users(Standard level) to download in 1080p resolution, and only Gold level to download in higher resolutions
+        /// We want to allow only registred users(Standard level) to download in 1080p resolution, and only Gold level to download in higher resolutions. Account level none should be treaded as unregistered user so can download in up to 720p quality
         /// </summary>
         /// <param name="quality">quality that user wants to download</param>
         /// <param name="isAuthenticated">We check if User.Identity.IsAuthenticated is true</param>
@@ -36,7 +28,7 @@ namespace YTDownloader.API.Domain.Entities
         {
             string[] splittedQuality = quality.Split('p');   //e.g. 720p60 => splittedQuality[0] = 720, splittedQuality[1] = 60
             int qualityInt = int.Parse(splittedQuality[0]);
-            var accountLevel = await CheckAccountLevel(username);
+            var accountLevel = await userRepo.GetUserAccountLevelAsync(username);
 
             if (isAuthenticated)
             {
@@ -50,7 +42,7 @@ namespace YTDownloader.API.Domain.Entities
                 }
 
                 else
-                    return (false, "You need to have YTGold in order to download in higher qualities ! ");
+                    return (false, "You need to have YTGold in order to download in higher qualities !");
                 
             }
             else
