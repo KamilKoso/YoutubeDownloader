@@ -18,7 +18,7 @@ namespace YTDownloader.API.Custom
         public override async Task ExecuteResultAsync(ActionContext context)
         {
             await base.ExecuteResultAsync(context);
-            CleanDirectory.DeleteFile(FileName);
+            await CleanDirectory.DeleteFile(FileName);
         }
     }
 }

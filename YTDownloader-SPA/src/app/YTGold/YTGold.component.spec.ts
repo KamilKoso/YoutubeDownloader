@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { VideoMetadataComponent } from './videoMetadata.component';
+import { YTGoldComponent } from './YTGold.component';
 
-describe('VideoMetadataComponent', () => {
-  let component: VideoMetadataComponent;
-  let fixture: ComponentFixture<VideoMetadataComponent>;
+describe('YTGoldComponent', () => {
+  let component: YTGoldComponent;
+  let fixture: ComponentFixture<YTGoldComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ VideoMetadataComponent ]
+      declarations: [ YTGoldComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(VideoMetadataComponent);
+    fixture = TestBed.createComponent(YTGoldComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

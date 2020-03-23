@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <a class="navbar-brand" href="#"><i class="fa fa-youtube-play"></i> Youtube Downloader</a>
+ 
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#" (click)="openBuyYTGoldModal()">Buy YTGold </a>
+      </li>
+      <li class="nav-item" *ngIf="!loggedIn()">
+        <a class="nav-link" href="#" (click)="openRegisterModal()">Register</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">FAQ</a>
+      </li>
+    </ul>
+
+    <div ngbDropdown *ngIf="loggedIn()" class="dropdown" display="dynamic"  placement="bottom-right">
+      <a ngbDropdownToggle class="text-light text-capitalize dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown">
+        Hello {{authService.decodedToken.unique_name}}
+      </a>
+    
+      <div ngbDropdownMenu  class="dropdown-menu dropdown-menu-right">
+        <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Edit profile</a>
+        <a class="dropdown-item" href="#"><i class="fa fa-dollar"></i> Buy YTGold</a>
+        <div class="dropdown-divider"></div>
+        <a class="dropdown-item" (click)=logout()><i class="fa fa-sign-out"></i> Logout</a>
+      </div>
+    </div>
+
+    <form *ngIf="!loggedIn()" #loginForm="ngForm" class="form-inline my-2 my-lg-0" (ngSubmit)="login()">
+      <input class="form-control mr-sm-2" type="text" placeholder="Login" [(ngModel)]="model.UsernameOrEmail" name="UsernameOrEmail" required>
+      <input class="form-control mr-sm-2" type="password" placeholder="Password" [(ngModel)]="model.Password" name="Password" required>
+      <button [disabled]="!loginForm.valid" class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button>
+    </form>
+</nav>

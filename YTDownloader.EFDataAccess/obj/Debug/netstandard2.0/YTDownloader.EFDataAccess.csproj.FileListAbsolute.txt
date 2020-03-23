@@ -1,0 +1,8 @@
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.EFDataAccess\bin\Debug\netstandard2.0\YTDownloader.EFDataAccess.deps.json
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.EFDataAccess\bin\Debug\netstandard2.0\YTDownloader.EFDataAccess.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.EFDataAccess\obj\Debug\netstandard2.0\YTDownloader.EFDataAccess.csprojAssemblyReference.cache
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.EFDataAccess\obj\Debug\netstandard2.0\YTDownloader.EFDataAccess.AssemblyInfoInputs.cache
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.EFDataAccess\obj\Debug\netstandard2.0\YTDownloader.EFDataAccess.AssemblyInfo.cs
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.EFDataAccess\bin\Debug\netstandard2.0\YTDownloader.EFDataAccess.pdb
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.EFDataAccess\obj\Debug\netstandard2.0\YTDownloader.EFDataAccess.dll
+C:\Users\Admin\source\repos\YTDownloader\YTDownloader.EFDataAccess\obj\Debug\netstandard2.0\YTDownloader.EFDataAccess.pdb

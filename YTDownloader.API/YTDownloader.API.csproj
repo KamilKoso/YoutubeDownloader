@@ -5,12 +5,26 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="YoutubeExplode" Version="4.7.11" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.2" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="5.6.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.6.0" />
+    <PackageReference Include="YoutubeExplode" Version="4.7.15" />
     <PackageReference Include="YoutubeExplode.Converter" Version="1.4.3" />
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Domain\Concrete\" />
     <Folder Include="wwwroot\DownloadedVideos\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YTDownloader.EFDataAccess\YTDownloader.EFDataAccess.csproj" />
   </ItemGroup>
 
 

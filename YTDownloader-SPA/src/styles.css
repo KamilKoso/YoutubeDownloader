@@ -1,7 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-@import '../node_modules/font-awesome/css/font-awesome.min.css';
-@import '../node_modules/animate.css/animate.min.css';
 
 .body-backgound{
     background: linear-gradient(-45deg, #00ad91, #005780,#a700ad , #4908fd);
@@ -20,4 +17,33 @@
     100% {
         background-position: 0% 50%;
     }
+}
+
+
+
+.loader-md {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 50px;
+    height: 50px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .form-control-feedback {
+    font-size: 75%;
+    font-weight:bold;
+    color: rgb(233, 0, 0)
 }

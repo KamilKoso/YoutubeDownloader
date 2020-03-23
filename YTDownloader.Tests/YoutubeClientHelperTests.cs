@@ -16,7 +16,7 @@ namespace YTDownloader.Tests
     {
         const string ffmpegPath = "..//..//..//..//YTDownloader.API//wwwroot//ffmpeg.exe"; //This should be ./YTDownloader/YTDownloader.API/wwwroot/ffmpeg.exe. If ffmpeg.exe is in other location change this string.
         private static readonly IYoutubeClient client = new YoutubeClient();
-        private readonly IYoutubeClientHelper helper = new YoutubeClientHelper(client, ffmpegPath);
+        private readonly IYoutubeClientHelper target = new YoutubeClientHelper(client, ffmpegPath);
 
 
         [Theory]
@@ -27,7 +27,7 @@ namespace YTDownloader.Tests
             //Act
             string[] videoIds = new string[videoUrls.Length];
             for (int i = 0; i < videoUrls.Length; i++)
-                videoIds[i] = helper.GetVideoID(videoUrls[i]);
+                videoIds[i] = target.GetVideoID(videoUrls[i]);
 
             //Assert
             Assert.Equal("Bey4XXJAqS8", videoIds[0]);
@@ -44,7 +44,7 @@ namespace YTDownloader.Tests
         [InlineData("https://youtu.be/LXb3EKWsI")] //non existing video
         public void GetVideoID_ShouldThrowException(string videoUrl)
         {
-            Assert.Throws<FormatException>(()=>helper.GetVideoID(videoUrl));
+            Assert.Throws<FormatException>(()=>target.GetVideoID(videoUrl));
         }
 
         [Theory]
@@ -56,7 +56,7 @@ namespace YTDownloader.Tests
             //Act
             for (int i = 0; i < videoIds.Length; i++)
             {
-                results[i] = await helper.GetVideoMetadata(videoIds[i]);
+                results[i] = await target.GetVideoMetadataAsync(videoIds[i]);
             }
 
             //Assert
@@ -71,7 +71,7 @@ namespace YTDownloader.Tests
 
         
         [Fact]
-        public void ffmpeg_CheckIfFfmpegExists()
+        public void Ffmpeg_CheckIfFfmpegExists()
         {
             //If this test fails, DownloadVideo test will fail too. Make sure ffmpeg is in correct location
             //Default correct location is in ./YTDownloader/YTDownloader.API/wwwrooot/ffmpeg.exe
@@ -86,9 +86,9 @@ namespace YTDownloader.Tests
         public async Task DownloadVideo_CanDownloadVideo(string id, string videoPath, string quality = "144p")
         {
             string videoPathAndName = videoPath + $"//{id}.mp4";
-            await helper.DownloadVideo(id, quality, videoPathAndName);
+            await target.DownloadVideoAsync(id, quality, videoPathAndName);
             Assert.True(File.Exists(videoPathAndName));
-            CleanDirectory.DeleteFile(videoPath, id + ".mp4");
+            await CleanDirectory.DeleteFileAsync(videoPath, id + ".mp4");
         }
 
         [Theory]
@@ -97,9 +97,9 @@ namespace YTDownloader.Tests
         public async Task DownloadAudio_CanDownloadAudio(string id, string videoPath)
         {
             string videoPathAndName = videoPath + $"//{id}.mp3";
-            await helper.DownloadAudio(id, videoPathAndName);
+            await target.DownloadAudioAsync(id, videoPathAndName);
             Assert.True(File.Exists(videoPathAndName));
-            CleanDirectory.DeleteFile(videoPath, id + ".mp3");
+            await CleanDirectory.DeleteFileAsync(videoPath, id + ".mp3");
         }
     }
 }
