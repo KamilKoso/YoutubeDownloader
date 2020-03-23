@@ -7,7 +7,7 @@ This project is simple website that will download Mp3 or Mp4 files in every poss
 Front end of the app was made using Angular 9, Bootstrap 4.41, Animate.css 3.7.2, toastr, ng-bootstrap and more. Code may be mess, before coding this project i  didn't know virtually anything about JS, TS, Angular. Still learning tho. Code is pretty simple and self explaining. 
 
 <h2>Back-end</h2>
-When server is starting, it deletes all the files and directories that are in /wwwroot/DownloadedVideos. If your server crashes when videos/audios were being processed this will automatically get rid of garbage left in this dir. When server is up and running, it can process videos. To do it properly it needs to know location of ffmpeg.exe, you can set it when creating instance of YoutubeClientHelper. By default it is coded to be in /wwwroot dir. Authorization is based on [JWTToken](https://jwt.io/)
+When server is starting, it deletes all the files and directories that are in /wwwroot/DownloadedVideos. If your server crashes when videos/audios were being processed this will automatically get rid of garbage left in this dir. When server is up and running, it can process videos. To do it properly it needs to know location of ffmpeg.exe, you can set it when creating instance of YoutubeClientHelper. By default it is coded to be in /wwwroot dir. Authorization is based on <a href="https://jwt.io/">JWTToken</a>
 
 <h3>API's</h3>
 
