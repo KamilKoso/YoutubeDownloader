@@ -57,7 +57,7 @@ namespace YTDownloader.Tests
             foreach (string quality in NotRegisteredUsersQualities)
             {
                 //Act
-                var result = await target.CanDownloadInCertainQuality(quality, isAuthenticated);
+                var result = await target.CanDownloadInCertainQualityAsync(quality, isAuthenticated);
                 bool canDownload = result.isAllowed;
                 string errorMessage = result.errorMessageIfNotAllowed;
                     
@@ -78,7 +78,7 @@ namespace YTDownloader.Tests
             foreach (string quality in StandardUsersQualities.Concat(GoldUsersQualities))
             {
                 //Act
-                var result = await target.CanDownloadInCertainQuality(quality, isAuthenticated);
+                var result = await target.CanDownloadInCertainQualityAsync(quality, isAuthenticated);
                 bool canDownload = result.isAllowed;
                 string errorMessage = result.errorMessageIfNotAllowed;
 
@@ -100,7 +100,7 @@ namespace YTDownloader.Tests
             foreach (string quality in NotRegisteredUsersQualities.Concat(StandardUsersQualities))
             {
                 //Act
-                var result = await target.CanDownloadInCertainQuality(quality, isAuthenticated);
+                var result = await target.CanDownloadInCertainQualityAsync(quality, isAuthenticated);
                 bool canDownload = result.isAllowed;
                 string errorMessage = result.errorMessageIfNotAllowed;
 
@@ -122,7 +122,7 @@ namespace YTDownloader.Tests
             foreach (string quality in GoldUsersQualities)
             {
                 //Act
-                var result = await target.CanDownloadInCertainQuality(quality, isAuthenticated);
+                var result = await target.CanDownloadInCertainQualityAsync(quality, isAuthenticated);
                 bool canDownload = result.isAllowed;
                 string errorMessage = result.errorMessageIfNotAllowed;
 
@@ -144,7 +144,7 @@ namespace YTDownloader.Tests
             foreach (string quality in NotRegisteredUsersQualities.Concat(StandardUsersQualities).Concat(GoldUsersQualities))
             {
                 //Act
-                var result = await target.CanDownloadInCertainQuality(quality, isAuthenticated);
+                var result = await target.CanDownloadInCertainQualityAsync(quality, isAuthenticated);
                 bool canDownload = result.isAllowed;
                 string errorMessage = result.errorMessageIfNotAllowed;
 

@@ -20,7 +20,7 @@ namespace YTDownloader.API.Domain.Entities
             this.context = context;
         }
 
-        public async Task<User> Login(string usernameOrEmail, string password)
+        public async Task<User> LoginAsync(string usernameOrEmail, string password)
         {
             var user = await context.Users.FirstOrDefaultAsync(x => x.Username == usernameOrEmail || x.EmailAddress == usernameOrEmail);
 
@@ -32,7 +32,7 @@ namespace YTDownloader.API.Domain.Entities
                 return user;
         }
 
-        public async Task<User> Register(User user, string password)
+        public async Task<User> RegisterAsync(User user, string password)
         {
             byte[] passwordHash, passwordSalt;
             CreatePasswordHashSalt(password, out passwordHash, out passwordSalt);
@@ -46,7 +46,7 @@ namespace YTDownloader.API.Domain.Entities
             return user;
         }
 
-        public async Task<bool> UserExists(string username)
+        public async Task<bool> UserExistsAsync(string username)
         {
             if (await context.Users.AnyAsync(x => x.Username == username))
                 return true;
@@ -54,12 +54,25 @@ namespace YTDownloader.API.Domain.Entities
                 return false;
         }
 
-        public async Task<bool> EmailExists(string email)
+        public async Task<bool> EmailExistsAsync(string email)
         {
             if (await context.Users.AnyAsync(x => x.EmailAddress == email))
                 return true;
             else
                 return false;
+        }
+
+        public async Task<bool> ChangeAccountLevel(string username, AccountLevel accountLevel)
+        {
+            var user = await context.Users.FirstOrDefaultAsync(x => x.Username == username);
+            if(user!=null)
+            {
+                user.UserAccountLevel = accountLevel;
+                context.Users.Update(user);
+                await context.SaveChangesAsync();
+                return true;
+            }
+            return false;
         }
 
         #endregion

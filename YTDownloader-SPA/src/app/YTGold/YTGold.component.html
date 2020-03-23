@@ -1,0 +1,10 @@
+<div class="modal-header">
+  <h2>Buy YTGold</h2>
+ </div>
+ <div class="modal-body">
+ <p>Here should be payment processing logic for buying YTGold. But still you can change your account level by clicking buttons</p>
+ <div class="modal-footer">
+   <p class="mr-auto form-control-feedback" *ngIf="!loggedIn()">Login first</p>
+   <button class="btn btn-warning" [disabled]="!loggedIn()" (click)="changeToGold()">Gold</button>
+   <button class="btn btn-success" [disabled]="!loggedIn()" (click)="changeToStandard()">Standard</button>
+ </div>

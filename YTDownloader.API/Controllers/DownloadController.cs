@@ -35,7 +35,7 @@ namespace YTDownloader.API.Controllers
             VideoDetails details;
             try
             {
-                details = await clientHelper.GetVideoMetadata(clientHelper.GetVideoID(videoUrl));
+                details = await clientHelper.GetVideoMetadataAsync(clientHelper.GetVideoID(videoUrl));
             }
             catch (FormatException)
             {
@@ -51,12 +51,12 @@ namespace YTDownloader.API.Controllers
         public async Task<IActionResult> GetVideo(string id, string quality)
         {
             //Check if provided quality as parameter is available in the video
-            var videoMetadata = await clientHelper.GetVideoMetadata(id);
+            var videoMetadata = await clientHelper.GetVideoMetadataAsync(id);
             if (!((List<string>)videoMetadata.qualities).Contains(quality))
                 return BadRequest("Invalid quality !");
 
             //Check if user is authorized and has required AccountLevel
-            var isAlowedToDownload = await checker.CanDownloadInCertainQuality(quality, User.Identity.IsAuthenticated, User.Identity.Name);
+            var isAlowedToDownload = await checker.CanDownloadInCertainQualityAsync(quality, User.Identity.IsAuthenticated, User.Identity.Name);
             if (!isAlowedToDownload.isAllowed)
                 return BadRequest(isAlowedToDownload.errorMessageIfNotAllowed);
 
@@ -64,7 +64,7 @@ namespace YTDownloader.API.Controllers
             string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
             try
             {
-                await clientHelper.DownloadVideo(id, quality, videoPath);
+                await clientHelper.DownloadVideoAsync(id, quality, videoPath);
             }
             catch (ArgumentException)
             {
@@ -83,7 +83,7 @@ namespace YTDownloader.API.Controllers
 
             try
             {
-                await clientHelper.DownloadAudio(id, audioPath);
+                await clientHelper.DownloadAudioAsync(id, audioPath);
             }
             catch (ArgumentException)
             {

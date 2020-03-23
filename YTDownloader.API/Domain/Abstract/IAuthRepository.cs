@@ -6,11 +6,13 @@ namespace YTDownloader.API.Domain.Abstract
 {
     public interface IAuthRepository
     {
-        Task<User> Login(string usernameOrEmail, string password);
-        Task<User> Register(User user, string password);
-        Task<bool> UserExists(string username);
-        Task<bool> EmailExists(string email);
-        
+        Task<User> LoginAsync(string usernameOrEmail, string password);
+        Task<User> RegisterAsync(User user, string password);
+        Task<bool> UserExistsAsync(string username);
+        Task<bool> EmailExistsAsync(string email);
+        Task<bool> ChangeAccountLevel(string username, AccountLevel accountLevel);
+
+
 
     }
 }

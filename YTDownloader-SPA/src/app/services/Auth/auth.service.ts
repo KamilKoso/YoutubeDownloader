@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import * as globals from '../../global';
 import { map } from 'rxjs/operators';
 import {JwtHelperService } from '@auth0/angular-jwt';
@@ -35,4 +35,16 @@ loggedIn() {
 getToken() {
   return localStorage.getItem('token');
   }
+
+changeAccountLevel(accountLevel: any){
+  let params = new HttpParams();
+  params = params.append('username', this.decodedToken.unique_name).append('level', accountLevel);
+
+  return this.http.post(globals.baseApiUrl + '/auth/ChangeAccountLevel', undefined,
+  {
+    params,
+    responseType: 'text',
+    headers: {Authorization: `Bearer ${this.getToken()}`}
+  });
+}
 }

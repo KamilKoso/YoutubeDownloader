@@ -56,7 +56,7 @@ namespace YTDownloader.Tests
             //Act
             for (int i = 0; i < videoIds.Length; i++)
             {
-                results[i] = await target.GetVideoMetadata(videoIds[i]);
+                results[i] = await target.GetVideoMetadataAsync(videoIds[i]);
             }
 
             //Assert
@@ -86,9 +86,9 @@ namespace YTDownloader.Tests
         public async Task DownloadVideo_CanDownloadVideo(string id, string videoPath, string quality = "144p")
         {
             string videoPathAndName = videoPath + $"//{id}.mp4";
-            await target.DownloadVideo(id, quality, videoPathAndName);
+            await target.DownloadVideoAsync(id, quality, videoPathAndName);
             Assert.True(File.Exists(videoPathAndName));
-            await CleanDirectory.DeleteFile(videoPath, id + ".mp4");
+            await CleanDirectory.DeleteFileAsync(videoPath, id + ".mp4");
         }
 
         [Theory]
@@ -97,9 +97,9 @@ namespace YTDownloader.Tests
         public async Task DownloadAudio_CanDownloadVideo(string id, string videoPath)
         {
             string videoPathAndName = videoPath + $"//{id}.mp3";
-            await target.DownloadAudio(id, videoPathAndName);
+            await target.DownloadAudioAsync(id, videoPathAndName);
             Assert.True(File.Exists(videoPathAndName));
-            await CleanDirectory.DeleteFile(videoPath, id + ".mp3");
+            await CleanDirectory.DeleteFileAsync(videoPath, id + ".mp3");
         }
     }
 }

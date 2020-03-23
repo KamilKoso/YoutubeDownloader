@@ -12,6 +12,7 @@ import { AuthService } from './services/Auth/auth.service';
 import { FileDownloadService } from './services/FileDownload/FileDownload.service';
 import { RegisterFormComponent } from './register-form/register-form.component';
 import {ToastrModule, ToastrService} from 'ngx-toastr';
+import { YTGoldComponent } from './YTGold/YTGold.component';
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
       AppComponent,
       VideoMetadataComponent,
       NavComponent,
-      RegisterFormComponent
+      RegisterFormComponent,
+      YTGoldComponent
    ],
    imports: [
       BrowserModule,
@@ -42,7 +44,8 @@ import {ToastrModule, ToastrService} from 'ngx-toastr';
    ],
 
    entryComponents: [
-      RegisterFormComponent
+      RegisterFormComponent,
+      YTGoldComponent
     ]
 })
 export class AppModule { }

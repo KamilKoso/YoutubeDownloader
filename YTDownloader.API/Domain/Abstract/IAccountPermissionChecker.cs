@@ -8,6 +8,6 @@ namespace YTDownloader.API.Domain.Abstract
 {
     public interface IAccountPermissionChecker
     {
-        public Task<(bool isAllowed, string errorMessageIfNotAllowed)> CanDownloadInCertainQuality(string quality, bool isAuthenticated, string username);
+        public Task<(bool isAllowed, string errorMessageIfNotAllowed)> CanDownloadInCertainQualityAsync(string quality, bool isAuthenticated, string username);
     }
 }

@@ -20,7 +20,8 @@ constructor(private http: HttpClient, private auth: AuthService) {}
   return this.http.post(globals.baseApiUrl + '/Download/GetVideo', undefined ,
   {
     observe: 'response',
-    responseType: 'blob', params,
+    responseType: 'blob',
+    params,
     headers: {Authorization: `Bearer ${this.auth.getToken()}`}});
   }
 

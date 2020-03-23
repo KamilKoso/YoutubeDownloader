@@ -5,9 +5,9 @@ namespace YTDownloader.API.Domain.Abstract
 {
     public interface IYoutubeClientHelper
     {
-        public Task<VideoDetails> GetVideoMetadata(string videoId);
+        public Task<VideoDetails> GetVideoMetadataAsync(string videoId);
         public string GetVideoID(string videoUrl);
-        public Task DownloadVideo(string id, string quality, string videoPath);
-        public Task DownloadAudio(string id, string audioPath);
+        public Task DownloadVideoAsync(string id, string quality, string videoPath);
+        public Task DownloadAudioAsync(string id, string audioPath);
     }
 }

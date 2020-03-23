@@ -3,10 +3,10 @@
  
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Buy YTGold </a>
+        <a class="nav-link" href="#" (click)="openBuyYTGoldModal()">Buy YTGold </a>
       </li>
       <li class="nav-item" *ngIf="!loggedIn()">
-        <a class="nav-link" href="#" (click)="open()">Register</a>
+        <a class="nav-link" href="#" (click)="openRegisterModal()">Register</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">FAQ</a>
@@ -14,7 +14,7 @@
     </ul>
 
     <div ngbDropdown *ngIf="loggedIn()" class="dropdown" display="dynamic"  placement="bottom-right">
-      <a ngbDropdownToggle class="text-light dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown">
+      <a ngbDropdownToggle class="text-light text-capitalize dropdown-toggle " role="button" id="dropdownMenuLink" data-toggle="dropdown">
         Hello {{authService.decodedToken.unique_name}}
       </a>
     

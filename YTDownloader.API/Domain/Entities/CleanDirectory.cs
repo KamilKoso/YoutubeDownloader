@@ -23,7 +23,7 @@ namespace YTDownloader.API.Domain.Entities
             }
         }
 
-        public static async Task DeleteFile(string path, string fileName)
+        public static async Task DeleteFileAsync(string path, string fileName)
         {
             await Task.Run(() =>
             {

@@ -24,7 +24,7 @@ namespace YTDownloader.API.Domain.Entities
         /// <param name="isAuthenticated">We check if User.Identity.IsAuthenticated is true</param>
         /// <param name="username">We provide username only if isAuthorized is true</param>
         /// <returns></returns>
-        public async Task<(bool isAllowed, string errorMessageIfNotAllowed)> CanDownloadInCertainQuality(string quality, bool isAuthenticated, string username = null)
+        public async Task<(bool isAllowed, string errorMessageIfNotAllowed)> CanDownloadInCertainQualityAsync(string quality, bool isAuthenticated, string username = null)
         {
             string[] splittedQuality = quality.Split('p');   //e.g. 720p60 => splittedQuality[0] = 720, splittedQuality[1] = 60
             int qualityInt = int.Parse(splittedQuality[0]);

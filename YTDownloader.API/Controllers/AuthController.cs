@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using YTDownloader.API.Domain.Abstract;
@@ -30,9 +31,9 @@ namespace YTDownloader.API.Controllers
             userForRegisterDto.Username = userForRegisterDto.Username.ToLower();
             userForRegisterDto.Email = userForRegisterDto.Email.ToLower();
 
-            if (await repository.UserExists(userForRegisterDto.Username))
+            if (await repository.UserExistsAsync(userForRegisterDto.Username))
                 return BadRequest("Login already taken !");
-            if (await repository.EmailExists(userForRegisterDto.Email))
+            if (await repository.EmailExistsAsync(userForRegisterDto.Email))
                 return BadRequest("E-mail already in use");
 
             User userToCreate = new User()
@@ -42,7 +43,7 @@ namespace YTDownloader.API.Controllers
                 UserAccountLevel = AccountLevel.Standard,
             
             };
-            var createdUser = await repository.Register(userToCreate, userForRegisterDto.Password);
+            var createdUser = await repository.RegisterAsync(userToCreate, userForRegisterDto.Password);
 
             return StatusCode(201);
         }
@@ -51,7 +52,7 @@ namespace YTDownloader.API.Controllers
         [Route("[action]")]
         public async Task<IActionResult> Login(UserForLoginDTO userForLoginDto)
         {
-            User userFromRepo = await repository.Login(userForLoginDto.UsernameOrEmail.ToLower(), userForLoginDto.Password);
+            User userFromRepo = await repository.LoginAsync(userForLoginDto.UsernameOrEmail.ToLower(), userForLoginDto.Password);
             if (userFromRepo == null)
                 return Unauthorized("Provided login or password is incorrect");
 
@@ -63,6 +64,17 @@ namespace YTDownloader.API.Controllers
             return Ok(new{token = tokenGenerator.GenerateToken(userFromRepo.Id, userFromRepo.Username, key, tokenExpiration)});
         }
         
+        [HttpPost]
+        [Route("[action]")]
+        [Authorize]
+        public async Task<IActionResult> ChangeAccountLevel(string username, AccountLevel level)
+        {
+          bool isSucessfull= await repository.ChangeAccountLevel(username, level);
+            if (isSucessfull)
+                return Ok("Account level changed !");
+            else
+                return BadRequest("Something went wrong ! Try again");
+        }
 
     }
 }

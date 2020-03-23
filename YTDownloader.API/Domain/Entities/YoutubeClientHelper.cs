@@ -33,7 +33,7 @@ namespace YTDownloader.API.Domain.Entities
             return YoutubeClient.ParseVideoId(videoUrl);
         }
 
-        public async Task<VideoDetails> GetVideoMetadata(string videoID)
+        public async Task<VideoDetails> GetVideoMetadataAsync(string videoID)
         {
             var video = await client.GetVideoAsync(videoID);
             MediaStreamInfoSet streamInfoSet = await client.GetVideoMediaStreamInfosAsync(videoID);
@@ -49,7 +49,7 @@ namespace YTDownloader.API.Domain.Entities
         /// <param name="quality">Choosen quality of the video</param>
         /// <param name="videoPath">Path where file should be saved and what file should be named with extension at the end (.mp4/.mp3).</param>
         /// <returns></returns>
-        public async Task DownloadVideo(string id, string quality, string videoPath)
+        public async Task DownloadVideoAsync(string id, string quality, string videoPath)
         {
             MediaStreamInfoSet streamInfoSet = await client.GetVideoMediaStreamInfosAsync(id);
             var audioStreamInfo = streamInfoSet.Audio.WithHighestBitrate();
@@ -64,7 +64,7 @@ namespace YTDownloader.API.Domain.Entities
         /// <param name="id">id of the youtube video</param>
         /// <param name="audioPath">Path where file should be saved without extension at the end</param>
         /// <returns></returns>
-        public async Task DownloadAudio(string id, string audioPath)
+        public async Task DownloadAudioAsync(string id, string audioPath)
         {
             MediaStreamInfoSet streamInfoSet = await client.GetVideoMediaStreamInfosAsync(id);
             var audioInfo = streamInfoSet.Audio.WithHighestBitrate();

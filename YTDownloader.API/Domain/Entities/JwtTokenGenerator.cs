@@ -15,7 +15,7 @@ namespace YTDownloader.API.Domain.Entities
         public string GenerateToken(int userId, string username, string tokenKey, DateTime tokenExpiration)
         {
             if (tokenExpiration < DateTime.Now)
-                tokenExpiration = DateTime.Now.AddHours(1);
+                throw new ArgumentException("Token expiration date is less than server date", "tokenExpiration");
 
             var claims = GenerateClaims(userId, username);
 
