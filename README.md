@@ -29,8 +29,8 @@ This api lets you download .mp3 file in highest possible bitrate. It gets youtub
 {YoutubeVideoID} - It is extracted id from youtube video. You can extract id by using GetVideoMetaData API. Youtube video id is string after "v=" in youtube link. Ex: https://www.youtube.com/watch?v=dQw4w9WgXcQ => ID="dQw4w9WgXcQ"<br><br>
 {VideoQualityToDownload} - It is quality in which video will be downloaded. Video needs to contain provided quality, we can't download video in 4k when video the best quality is 1080p.<br><br>
 
-<h2>AuthController</h2>
-**1.Register**<br>
+<h4>AuthController</h4>
+**1.Register** <br>
 localhost:{port}/Auth/Register<br>
 This api takes UserForRegisterDTO as a body parameter, checks wheter user with the same username or email already exists if not user is added to the database, password is store as password hash with password salt if so it returns bad request with error message. UserForRegisterDTO has three fields:<br>
 Username - minimum 3 characters, maximum 15, must be unique<br>
