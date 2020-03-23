@@ -11,7 +11,7 @@ When server is starting, it deletes all the files and directories that are in /w
 
 <h3>API's</h3>
 
-<h2>DownloadController</h2>
+<h4>DownloadController</h4>
 **1. GetVideoMetaData** <br>
 localhost:{port}/Download/GetVideoMetaData?videoUrl={LinkToYoutube} <br>
 This api collects and returns metadata of videoUrl. Saves it to VideoDetails model. VideoDetails model contains: ID of the Youtube video, Channel name, Title of the Youtube video, Qualities of the Youtube video, Thumbnails in different resolutions
@@ -33,9 +33,9 @@ This api lets you download .mp3 file in highest possible bitrate. It gets youtub
 **1.Register**<br>
 localhost:{port}/Auth/Register<br>
 This api takes UserForRegisterDTO as a body parameter, checks wheter user with the same username or email already exists if not user is added to the database, password is store as password hash with password salt if so it returns bad request with error message. UserForRegisterDTO has three fields:<br>
-Username - minimum 3 characters, maximum 15, must be unique
-Email - minimum 3 characters, maximum 320, must be unique
-Password - minimum 6 characters, maximum 15
+Username - minimum 3 characters, maximum 15, must be unique<br>
+Email - minimum 3 characters, maximum 320, must be unique<br>
+Password - minimum 6 characters, maximum 15<br>
 
 **2.Login**<br>
 localhost:{port}/Auth/Login<br>
@@ -43,10 +43,10 @@ This api takes UserForLoginDTO as a body parameter, checks whether user with pro
 
 **3.ChangeAccountLevel**<br>
 localhost:{port}/Auth/ChangeAccountLevel<br>
-This api is just to change account level of the logged in user since we do not have any payment processor i made this api in order to be able to change account levels. It takes number from 0 to 2 which indicates account level:
-0-None (can download videos same as non registerd users so up to 720p quality)
-1-Standard (can download videos in up to 1080p quality)
-2-Gold (can download in all possible video qualities)
+This api is just to change account level of the logged in user since we do not have any payment processor i made this api in order to be able to change account levels. It takes number from 0 to 2 which indicates account level:<br>
+0-None (can download videos same as non registerd users so up to 720p quality)<br>
+1-Standard (can download videos in up to 1080p quality)<br>
+2-Gold (can download in all possible video qualities)<br>
 
 <h2>How does it work ? </h2>
 
