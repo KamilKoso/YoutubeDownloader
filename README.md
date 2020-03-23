@@ -12,6 +12,7 @@ When server is starting, it deletes all the files and directories that are in /w
 <h3>API's</h3>
 
 <h4>DownloadController</h4>
+
 **1. GetVideoMetaData** <br>
 localhost:{port}/Download/GetVideoMetaData?videoUrl={LinkToYoutube} <br>
 This api collects and returns metadata of videoUrl. Saves it to VideoDetails model. VideoDetails model contains: ID of the Youtube video, Channel name, Title of the Youtube video, Qualities of the Youtube video, Thumbnails in different resolutions
@@ -30,6 +31,7 @@ This api lets you download .mp3 file in highest possible bitrate. It gets youtub
 {VideoQualityToDownload} - It is quality in which video will be downloaded. Video needs to contain provided quality, we can't download video in 4k when video the best quality is 1080p.<br><br>
 
 <h4>AuthController</h4>
+
 **1.Register** <br>
 localhost:{port}/Auth/Register<br>
 This api takes UserForRegisterDTO as a body parameter, checks wheter user with the same username or email already exists if not user is added to the database, password is store as password hash with password salt if so it returns bad request with error message. UserForRegisterDTO has three fields:<br>
