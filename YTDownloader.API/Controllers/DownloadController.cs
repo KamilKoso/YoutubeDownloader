@@ -49,12 +49,9 @@ namespace YTDownloader.API.Controllers
         [HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> GetVideo(string id, string quality)
-        {
-<<<<<<< HEAD
-            
+        {  
              string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
              
-=======
             //Check if provided quality as parameter is available in the video
             var videoMetadata = await clientHelper.GetVideoMetadataAsync(id);
             if (!((List<string>)videoMetadata.qualities).Contains(quality))
@@ -65,9 +62,6 @@ namespace YTDownloader.API.Controllers
             if (!isAlowedToDownload.isAllowed)
                 return BadRequest(isAlowedToDownload.errorMessageIfNotAllowed);
 
-
-            string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
->>>>>>> Experimental
             try
             {
                 await clientHelper.DownloadVideoAsync(id, quality, videoPath);

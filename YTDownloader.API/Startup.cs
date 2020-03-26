@@ -11,6 +11,7 @@ using YTDownloader.API.Domain.Concrete;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System.IO;
 
 namespace YTDownloader.API
 {
@@ -55,10 +56,17 @@ namespace YTDownloader.API
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
 
-            //Clear wwwroot/DownloadedVideos dir
+            //Clear wwwroot/DownloadedVideos dir or create on if not exist
             string videosPath = env.WebRootPath + "\\DownloadedVideos";
-            CleanDirectory.DeleteAllFiles(videosPath);
-            CleanDirectory.DeleteAllSubDirs(videosPath);
+            if (File.Exists(videosPath))
+            {
+                CleanDirectory.DeleteAllFiles(videosPath);
+                CleanDirectory.DeleteAllSubDirs(videosPath);
+            }
+            else
+            {
+                Directory.CreateDirectory(videosPath);
+            }
            
         }
 
