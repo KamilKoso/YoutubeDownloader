@@ -2,11 +2,8 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using YTDownloader.API.Models;
-using Microsoft.AspNetCore.Hosting;
 using YTDownloader.API.Domain.Abstract;
 using YTDownloader.API.Custom;
-using Microsoft.AspNetCore.Authorization;
-using YTDownloader.EFDataAccess.Models;
 using System.Collections.Generic;
 
 namespace YTDownloader.API.Controllers
@@ -17,13 +14,11 @@ namespace YTDownloader.API.Controllers
     public class DownloadController : ControllerBase
     {
         private readonly IYoutubeClientHelper clientHelper;
-        private readonly IWebHostEnvironment env;
         private readonly IAccountPermissionChecker checker;
 
-        public DownloadController(IYoutubeClientHelper client, IWebHostEnvironment env, IAccountPermissionChecker checker)
+        public DownloadController(IYoutubeClientHelper client, IAccountPermissionChecker checker)
         {
-            this.clientHelper = client;
-            this.env = env;
+            clientHelper = client;
             this.checker = checker;
         }
 
@@ -50,7 +45,7 @@ namespace YTDownloader.API.Controllers
         [Route("[action]")]
         public async Task<IActionResult> GetVideo(string id, string quality)
         {  
-             string videoPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp4";
+             string videoPath = DownloaderConfiguration.videoDownloadPath + $"\\{id}.mp4";
              
             //Check if provided quality as parameter is available in the video
             var videoMetadata = await clientHelper.GetVideoMetadataAsync(id);
@@ -79,7 +74,7 @@ namespace YTDownloader.API.Controllers
         public async Task<IActionResult> GetAudio(string id)
         {
 
-            string audioPath = env.WebRootPath + $"\\DownloadedVideos\\{id}.mp3";
+            string audioPath = DownloaderConfiguration.videoDownloadPath + $"\\DownloadedVideos\\{id}.mp3";
 
             try
             {
