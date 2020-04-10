@@ -34,6 +34,13 @@ namespace YTDownloader.API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Configuration
+            string videosPath = env.WebRootPath + "\\DownloadedVideos"; // Place where your videos will be saved on the server
+            string ffmpegLocation = env.WebRootPath + "\\ffmpeg.exe";  //Location to your ffmpeg.exe
+            string ffmpegDownloadLink = "https://drive.google.com/u/0/uc?id=1kuiOY4_uAZxgp04YoB6DGL-tWiv5T-VD&export=download";  //Location where ffmpeg.exe can be downloaded in case if it will be missing at server startup
+            DownloaderConfiguration.SetSettings(ffmpegLocation, videosPath, ffmpegDownloadLink);
+
             services.AddControllers();
             services.AddCors();
             services.AddAntiforgery();
@@ -49,7 +56,7 @@ namespace YTDownloader.API
                         });
 
             services.AddScoped<IYoutubeClient, YoutubeClient>();
-            services.AddScoped<IYoutubeClientHelper>(s => new YoutubeClientHelper(new YoutubeClient(), env.WebRootPath + "\\ffmpeg.exe"));
+            services.AddScoped<IYoutubeClientHelper>(s => new YoutubeClientHelper(new YoutubeClient(), DownloaderConfiguration.ffmpegLocation));
             services.AddScoped<IAuthRepository, AuthRepository>();
             services.AddScoped<IAccountPermissionChecker, AccountPermissionChecker>();
             services.AddScoped<IUserRepository, UserRepository>();
@@ -59,11 +66,7 @@ namespace YTDownloader.API
                 options.UseSqlServer(Configuration.GetConnectionString("Default"));
             });
 
-            //Configuration
-            string videosPath = env.WebRootPath + "\\DownloadedVideos"; // Place where your videos will be saved on the server
-            string ffmpegLocation = env.WebRootPath + "\\ffmpeg.exe";  //Location to your ffmpeg.exe
-            string ffmpegDownloadLink = "https://drive.google.com/u/0/uc?id=1kuiOY4_uAZxgp04YoB6DGL-tWiv5T-VD&export=download";  //Location where ffmpeg.exe can be downloaded in case if it will be missing at server startup
-            DownloaderConfiguration.SetSettings(ffmpegLocation, videosPath, ffmpegDownloadLink);
+            
             //Clear wwwroot/DownloadedVideos dir or create on if not exist
             if (File.Exists(DownloaderConfiguration.videoDownloadPath))
             {
