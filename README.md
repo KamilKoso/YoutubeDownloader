@@ -1,7 +1,7 @@
 <h1 align="center">YoutubeDownloader</h1>
 
 <h2>Introduction</h2>
-This project is simple website that will download Mp3 or Mp4 files in every possibble quality from YouTube. It uses <a href="https://github.com/Tyrrrz/YoutubeExplode">YoutubeExplode</a> along with <a href="https://github.com/Tyrrrz/YoutubeExplode.Converter">YoutubeExplode.Converter</a> under the hood. Non registered user can download videos in quality up to 720p, registered user can download videos up to 1080p and user with YTGold account can download videos in every possible quality.
+This project is simple website that will download Mp3 or Mp4 files in every possibble quality from YouTube. It uses <a href="https://github.com/Tyrrrz/YoutubeExplode">YoutubeExplode</a> along with <a href="https://github.com/Tyrrrz/YoutubeExplode.Converter">YoutubeExplode.Converter</a> under the hood. Non registered user can download videos up to 720p, registered user can download videos up to 1080p and user with YTGold account can download videos in every possible quality.
 
 <h3>Front-end</h3>
 Front end of the app was made using Angular 9, Bootstrap 4.41, Animate.css 3.7.2, toastr, ng-bootstrap and more. Code may be mess, before coding this project i  didn't know virtually anything about JS, TS, Angular. Still learning tho. Code is pretty simple and self explaining. 
