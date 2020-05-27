@@ -45,7 +45,7 @@ This api takes UserForLoginDTO as a body parameter, checks whether user with pro
 
 **3.ChangeAccountLevel**<br>
 localhost:{port}/Auth/ChangeAccountLevel<br>
-This api is just to change account level of the logged in user since we do not have any payment processor i made this api in order to be able to change account levels. It takes number from 0 to 2 which indicates account level:<br>
+This api is just to change account level of the logged in user, since we do not have any payment processor i made this api to be able to change account levels. It takes number from 0 to 2 which indicates account level:<br>
 0-None (can download videos same as non registerd users so up to 720p quality)<br>
 1-Standard (can download videos in up to 1080p quality)<br>
 2-Gold (can download in all possible video qualities)<br>
